@@ -10,9 +10,22 @@ class User
        'username',
        'password',
        'fullname',
-       'type',
-       'grade'
+       'admin',
+       'team_id'
     ];
+
+    protected static $types = [
+        'USER',
+        'ADMIN'
+     ];
+
+     protected static $groups = [
+        'STAFF',
+        'PERSONEL',
+        '7',
+        '8',
+        '9'
+     ];
 
     public static function fields()
     {
@@ -22,34 +35,53 @@ class User
     public static function data($user_id)
     {
         global $db;
-        return $db->get(self::$table, [self::$fields[0], '=', $user_id])->first();
+        return $db->get(self::$table, [self::$fields[0], '=', $user_id]);
     }
 
-    public static function school($grade)
+    public static function teams($team)
     {
         global $db;
-        return $db->get(self::$table, [self::$fields[5], '=', $grade])->results();
+        return $db->get(self::$table, [self::$fields[5], '=', $team])->results();
     }
 
-    public static function list($type = 'STUDENT')
+    public static function list()
     {
         global $db;
-        return $db->get(self::$table, [self::$fields[4], '=', $type])->results();
+        return $db->get(self::$table)->results();
     }
 
-    public static function auth($username, $password, $type = 'STUDENT')
+    public static function limit($start, $pages)
+    {
+        global $db;
+        $table = self::$table;
+        return $db->query("SELECT * FROM {$table} LIMIT {$start},{$pages}");
+    }
+
+    public static function create(array $data)
+    {
+        global $db;
+        return $db->insert(self::$table, $data);
+    }
+
+    public static function update(array $data, array $id)
+    {
+        global $db;
+        return $db->update(self::$table, $data, $id);
+    }
+
+    public static function auth($username, $password = false, $admin = false)
     {
         global $db;
         $table = self::$table;
         $user_name = self::$fields[1];
         $pass_word = self::$fields[2];
-        $user_type = self::$fields[4];
+        $user_admin = self::$fields[4];
 
         if($username && $password) {
-            return $db->query("SELECT * FROM {$table} WHERE {$user_name} = ? AND {$pass_word} = ? AND {$user_type} = ?", [$username, $password, $type])->first();
+            return $db->query("SELECT * FROM {$table} WHERE {$user_name} = ? AND {$pass_word} = ? AND {$user_admin} = ?", [$username, $password, $admin])->first();
+        } else {
+            return $db->get(self::$table, [self::$fields[1], '=', $username])->first();
         }
-
-        return false;
     }
 
 }

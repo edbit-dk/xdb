@@ -7,11 +7,14 @@ class Record
 
     protected static $fields = [
        'id',
-       'student_id',
-       'teacher_id',
-       'subject',
-       'school_grade',
-       'final_grade'
+       'user_id',
+       'admin_id',
+       'subject_id',
+       'team_id',
+       'final_grade',
+       'winter_grade',
+       'summer_grade',
+       'course_grade'
     ];
 
     public static function fields()
@@ -25,13 +28,19 @@ class Record
         return $db->get(self::$table)->results();
     }
 
-    public static function school($grade)
+    public static function teams($team_id)
     {
         global $db;
-        return $db->get(self::$table, [self::$fields[4], '=', $grade])->results();
+        return $db->get(self::$table, [self::$fields[4], '=', $team_id])->results();
     }
 
-    public static function teacher($user_id)
+    public static function update(array $data, array $id)
+    {
+        global $db;
+        return $db->update(self::$table, $data, $id);
+    }
+
+    public static function admin($user_id)
     {
         global $db;
 
@@ -39,11 +48,14 @@ class Record
        
     }
 
-    public static function student($user_id)
+    public static function user($user_id)
     {
         global $db;
-
-        return $db->get(self::$table, [self::$fields[1], '=', $user_id])->results();
+        $table = self::$table;
+        $user = self::$fields[1];
+        $admin = self::$fields[2];
+        
+        return $db->query("SELECT * FROM {$table} WHERE {$user} = ? OR {$admin} = ?", [$user_id, $user_id])->results();
        
     }
 }

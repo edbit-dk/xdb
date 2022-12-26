@@ -1,10 +1,10 @@
 <?php
 
-require_once("includes/bootstrap.php");
+require_once("bootstrap.php");
 
 if(post('csrf')) {
 
-  $auth = User::auth(post('user_name'), post('pass_word'));
+  $auth = User::auth(post('user_name'));
 
   if($auth) {
   session('user', $auth);
@@ -31,10 +31,7 @@ if(post('csrf')) {
       <input type="text" name="user_name" class="form-control" id="floatingInput" autofocus="" autocomplete="off">
       <label for="floatingInput">Brugernavn</label>
     </div>
-    <div class="form-floating">
-      <input type="password" name="pass_word" class="form-control" id="floatingPassword" autocomplete="off">
-      <label for="floatingPassword">Adgangskode</label>
-    </div>
+    <br>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Log ind</button>
     <a href="?page=home">Hjem</a>
   </form>

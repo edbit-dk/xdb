@@ -1,5 +1,4 @@
 <?php
 confirm_logged_in() 
 ?>
-<p>(<?php echo session('user')->username; ?>)</p>
-<a href="logout.php">Log ud?</a>
+<p>ADMIN: (<?php echo session('user')->username; ?>) <a class="btn btn-danger" href="logout.php">Log ud?</a></p>

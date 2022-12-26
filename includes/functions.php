@@ -106,3 +106,16 @@ function post($name) {
 function csrf_token($name = 'csrf') {
 	return $_SESSION[$name] = uniqid();
 }
+
+function pagination($name = 'pages', $num_per_page = 5) {
+
+	if(isset($_GET[$name])) {
+		$pages = $_GET[$name];
+	} else {
+		$pages = 1;
+	}
+
+	$start_from = ($pages - 1)*$num_per_page;
+
+	return $start_from;
+}

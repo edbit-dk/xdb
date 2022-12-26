@@ -1,6 +1,6 @@
 <?php 
 
-require_once("../includes/bootstrap.php");
+require_once("../bootstrap.php");
 
 studconfirm_logged_in();
 

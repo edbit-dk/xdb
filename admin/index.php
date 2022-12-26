@@ -1,5 +1,6 @@
 <?php
-require_once("../includes/bootstrap.php");
+
+require_once("../bootstrap.php");
 
 $content='home.php';
 
@@ -7,7 +8,7 @@ $view = (isset($_GET['page']) && $_GET['page'] != '') ? $_GET['page'] : '';
 switch ($view) {
 
 	case 'home' :
-        $title="xDB";	
+        $title="XDB";	
 		$content='home.php';
 		break;
 	
@@ -16,18 +17,18 @@ switch ($view) {
 		$content='login.php';
 		break;
 
-	case 'students' :
-		$title="Elever";	
-		$content ='students.php';
+	case 'users':
+		$title="Brugere";	
+		$content ='users.php';
 		break;
 		
-	case 'records' && 'student':
+	case 'records':
 	    $title="Karakterblad";	
 		$content ='records.php';
 		break;
 				
 	default:
-	    $title="xDB";	
+	    $title="XDB";	
 		$content ='home.php';		
 }
 
