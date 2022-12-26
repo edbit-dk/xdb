@@ -34,6 +34,12 @@ class Record
         return $db->get(self::$table, [self::$fields[4], '=', $team_id])->results();
     }
 
+    public static function create(array $data)
+    {
+        global $db;
+        return $db->insert(self::$table, $data);
+    }
+
     public static function update(array $data, array $id)
     {
         global $db;

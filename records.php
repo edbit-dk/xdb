@@ -45,10 +45,10 @@ foreach($teams as $team) {
             }
         }
         ?></td>
-            <td><?php echo $record->course_grade; ?></td>
-            <td><?php echo $record->winter_grade; ?></td>
-            <td><?php echo $record->summer_grade; ?></td>
-            <td><?php echo $record->final_grade; ?></td>
+            <td style="color: #015ab3; font-size: 30px; font-weight: 600;"><?php echo $record->course_grade; ?></td>
+            <td style="color: #015ab3; font-size: 30px; font-weight: 600;"><?php echo $record->winter_grade; ?></td>
+            <td style="color: #015ab3; font-size: 30px; font-weight: 600;"><?php echo $record->summer_grade; ?></td>
+            <td style="color: #015ab3; font-size: 30px; font-weight: 600;"><?php echo $record->final_grade; ?></td>
             <td><textarea style="color: #015ab3; font-weight: 600;" cols="50" disabled><?php echo $record->feedback; ?></textarea></td>
         </tr>
         <?php endforeach ?>

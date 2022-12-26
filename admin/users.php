@@ -20,7 +20,7 @@ if (post('csrf') && post('create')) {
         'admin' => post('admin')
     ]);
     
-    message("Bruger opdateret!", 'info');
+    message("Bruger oprettet!", 'info');
 }
 
 if(post('csrf') && post('update')) {

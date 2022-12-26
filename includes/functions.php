@@ -119,3 +119,36 @@ function pagination($name = 'pages', $num_per_page = 5) {
 
 	return $start_from;
 }
+
+function average_grade($array) {
+
+	$final_grade = array_sum($array) / count($array);
+
+	if($final_grade>=12){
+		$remarks = "Fremragende præstation!";	
+		$final_grade = 12;
+	} elseif($final_grade>=10) {
+		$remarks = "Fortrinlig præstation!";
+		$final_grade = 10;
+	} elseif($final_grade>=7) {
+		$remarks = "God præstation!";
+		$final_grade = 7;
+	} elseif($final_grade>=4) {
+		$remarks = "Jævn præstation!";
+		$final_grade = 4;
+	} elseif($final_grade>=2) {
+		$remarks = "Tilstrækkelig præstation!";
+		$final_grade = 2;
+	} elseif($final_grade>=0) {
+		$remarks = "Utilstrækkelig præstation!";
+		$final_grade = 0;
+	} elseif($final_grade<0) {
+		$remarks = "Ringe præstation!";
+		$final_grade = -3;
+	}
+
+	return [
+		'avg' => $final_grade,
+		'remarks' => $remarks
+	];
+}
