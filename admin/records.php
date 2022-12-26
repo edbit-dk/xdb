@@ -20,6 +20,7 @@ if(post('csrf')) {
 
 $team_id = '';
 $user_id = '';
+$admins = User::admins();
 $teams = Team::list();
 $subjects = Subject::list();
 
@@ -42,7 +43,7 @@ if (isset($_GET['user_id'])) {
 <caption><h3 align="left">KARAKTERBLADE</h3></caption>
 <form align="left">
     <select style="color: #015ab3; font-size: 30px; font-weight: 600;" name="team_id" id="teams" onchange = "reloadTeams('teams');">
-        <option value="0">Alle</option>
+        <option value="0">ALLE</option>
         <?php foreach($teams as $team): ?>
         <option value="<?php echo $team->id; ?>" <?php if($team->id == $team_id): ?> selected <?php endif ?>><?php echo $team->name; ?></option>
         <?php endforeach ?>
@@ -96,7 +97,47 @@ if (isset($_GET['user_id'])) {
         <?php endif ?>
     </tbody>	
 </table>
-
+<?php if(!empty($user_id)): ?>
+<p>Nyt KARAKTERBLAD:</p>
+    <form action="?page=users" method="POST">
+    <label>Fag: 
+    <select name="subject_id" >
+        <option>Vælg Fag</option>
+        <?php foreach($subjects as $subject): ?>
+        <option value="<?php echo $subject->id; ?>"><?php echo $subject->name; ?></option>
+        <?php endforeach ?>
+    </select> 
+    </label>
+    <?php var_dump($records); ?>
+    <label>Bruger: <input type="text" name="user" value="<?php echo $records; ?>"></label>
+    <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+    <label>Team: 
+    <select name="team_id" >
+        <option>Vælg Team</option>
+        <?php foreach($teams as $team): ?>
+        <option value="<?php echo $team->id; ?>"><?php echo $team->name; ?></option>
+        <?php endforeach ?>
+    </select> 
+    </label>
+    <label>Admin: 
+    <select name="subject_id" >
+        <option>Vælg Admin</option>
+        <?php foreach($admins as $admin): ?>
+        <option value="<?php echo $admin->id; ?>" <?php if($admin->id == session('user')->id): ?>selected<?php endif ?>><?php echo $admin->fullname; ?></option>
+        <?php endforeach ?>
+    </select> 
+    </label>
+    <label>Forløb: <input name="course_grade" type="number"></label>
+    <label>1. standpunkt: <input name="winter_grade" type="number"></label>
+    <label>2. standpunkt: <input name="summer_grade" type="number"></label>
+    <label>Gennemsnit: <input name="final_grade" type="number"></label>
+    <br>
+    <label>Feedback: <textarea name="feedback"></textarea>
+    <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
+    <br>
+    <input class="btn btn-success" name="create" type="submit" value="Opret">
+    </form>
+<?php endif ?>
 </div><!--End of container-->
 <script>
 var team = 0

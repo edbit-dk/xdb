@@ -4,7 +4,7 @@ require_once("../bootstrap.php");
 
 if(post('csrf')) {
 
-  $auth = User::auth(post('user_name'), md5(post('pass_word')), 1);
+  $auth = User::auth(post('user_name'), post('pass_word'), 1);
 
   if($auth) {
   session('user', $auth);

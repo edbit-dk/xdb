@@ -9,8 +9,7 @@ if (post('csrf') && post('create')) {
     $password = post('password');
 
     if(empty($password)) {
-        $random_pass = uniqid();
-        $password = md5($random_pass);
+        $password = uniqid();
     }
 
     User::create([
@@ -21,7 +20,7 @@ if (post('csrf') && post('create')) {
         'admin' => post('admin')
     ]);
     
-    message("Bruger opdateret! {$password}", 'info');
+    message("Bruger opdateret!", 'info');
 }
 
 if(post('csrf') && post('update')) {
@@ -62,7 +61,7 @@ if (isset($_GET['user_id'])) {
 <caption><h3 align="left">BRUGERE</h3></caption>
 <form align="left">
     <select style="color: #015ab3; font-size: 30px; font-weight: 600;" name="team_id" id="teams" onchange = "reloadTeams('teams');">
-        <option value="0">Alle</option>
+        <option value="0">ALLE</option>
         <?php foreach($teams as $team): ?>
         <option value="<?php echo $team->id; ?>" <?php if($team->id == $team_id): ?> selected <?php endif ?>><?php echo $team->name; ?></option>
         <?php endforeach ?>
@@ -118,6 +117,7 @@ if (isset($_GET['user_id'])) {
         <option value="<?php echo $team->id; ?>"><?php echo $team->name; ?></option>
         <?php endforeach ?>
     </select> 
+    </label>
     <label> Admin: 
     <select name="admin" >
         <option value="0">Nej</option>

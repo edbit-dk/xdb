@@ -14,11 +14,6 @@ class User
        'team_id'
     ];
 
-    protected static $types = [
-        'USER',
-        'ADMIN'
-     ];
-
      protected static $groups = [
         'STAFF',
         'PERSONEL',
@@ -42,6 +37,12 @@ class User
     {
         global $db;
         return $db->get(self::$table, [self::$fields[5], '=', $team])->results();
+    }
+
+    public static function admins()
+    {
+        global $db;
+        return $db->get(self::$table, [self::$fields[4], '=', 1])->results();
     }
 
     public static function list()
