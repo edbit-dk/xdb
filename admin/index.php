@@ -56,7 +56,7 @@ switch ($view) {
 		
 		if (isset($_GET['user_id'])) {
 			$user_id = $_GET['user_id'];
-			$users = User::data($user_id);
+			$users = User::data($user_id)->results();
 		
 		} elseif(isset($_GET['team_id'])) {
 			$team_id = $_GET['team_id'];
@@ -118,7 +118,7 @@ switch ($view) {
 		if (isset($_GET['user_id'])) {
 			$user_id = $_GET['user_id'];
 			$records = Record::user($user_id);
-			$user = User::data($user_id);
+			$user = User::data($user_id)->first();
 		
 		} elseif(isset($_GET['team_id'])) {
 			$team_id = $_GET['team_id'];

@@ -22,7 +22,7 @@ class User
     public static function data($user_id)
     {
         global $db;
-        return $db->get(self::$table, [self::$fields[0], '=', $user_id])->first();
+        return $db->get(self::$table, [self::$fields[0], '=', $user_id]);
     }
 
     public static function teams($team)
