@@ -5,7 +5,7 @@ $teams = Team::list();
 ?>
 
 <!-- Custom styles for this template -->
-<link href="<?php echo WEB_ROOT; ?>/theme/css/signin.css" rel="stylesheet">
+<link href="<?php echo url('/assets/theme/css/signin.css') ?>" rel="stylesheet">
 
 <main class="form-signin w-100 m-auto" style="background-color: white; box-shadow: 11px 30px 154px 2px rgb(0 0 0 / 34%); padding: 50px;">
 <?php require 'header.php'; ?>    

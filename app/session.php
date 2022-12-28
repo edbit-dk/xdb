@@ -11,7 +11,7 @@
 	//this function if session member is not set then it will be redirected to login.php
 	function confirm_logged_in() {
 		if (!logged_in()) {
-			redirect_to('admin/?page=login');
+			redirect_to('/admin/?page=login');
 		}
 	}
 	function studlogged_in() {
@@ -32,7 +32,7 @@
 	    $_SESSION['msgtype'] = $msgtype;
 	  } else {
 	    // then this is "get message"
-			return $message;
+			return $_SESSION['message'];
 	  }
 	}
 	function check_message(){

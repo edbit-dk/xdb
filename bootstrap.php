@@ -1,19 +1,16 @@
 <?php
 
 // Folder path
-defined('WEB_PATH') ? null : define("WEB_PATH", basename(__DIR__));
-
 defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
 
-defined('SITE_ROOT') ? null : define ('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'].DS.WEB_PATH);
+defined('BASE_PATH') ? null : define("BASE_PATH", __DIR__);
 
-defined('LIB_PATH') ? null : define ('LIB_PATH',SITE_ROOT.DS.'includes');
+defined('APP_PATH') ? null : define ('APP_PATH',BASE_PATH.DS.'app');
 
-// load config file first 
-require_once(SITE_ROOT . "/includes/config.php");
-
-require_once(LIB_PATH.DS."session.php");
-require_once(LIB_PATH.DS."functions.php");
+// load config files
+require_once(APP_PATH.DS."session.php");
+require_once(APP_PATH.DS."functions.php");
+require_once(APP_PATH.DS."config.php");
 
 $db = new DB([
 	'dbname' => DB_NAME,

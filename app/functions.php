@@ -1,5 +1,13 @@
 <?php
 
+	function url($path = ''){
+		return sprintf(
+		"%s://%s",
+		isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
+		$_SERVER['SERVER_NAME'] . WEB_PATH . $path
+		);
+	}
+
 	function clean_input($input) {
 		return trim($input);
 	}
@@ -12,14 +20,14 @@
 	}
 	function redirect_to($location = NULL) {
 		if($location != NULL){
-			$web_root = WEB_ROOT;
+			$web_root = url();
 			header("Location: {$web_root}{$location}");
 			exit;
 		}
 	}
 	function redirect($location=Null){
 		if($location!=Null){
-			$web_root = WEB_ROOT;
+			$web_root = url();
 			echo "<script>
 					window.location='{$web_root}{$location}'
 				</script>";	
@@ -43,7 +51,7 @@
 	}
 	function __autoload($class_name) {
 		$class_name = strtolower($class_name);
-		$path = LIB_PATH.DS."classes/{$class_name}.class.php";
+		$path = APP_PATH.DS."classes/{$class_name}.class.php";
 		if(file_exists($path)){
 			require_once($path);
 		}else{
