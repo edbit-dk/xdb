@@ -15,6 +15,7 @@ if (post('csrf') && post('create')) {
     ]);
     
     message("Bruger oprettet!", 'info');
+    redirect_to('/admin?page=users&team_id=' . post('team_id'));
 }
 
 if(post('csrf') && post('update')) {
@@ -29,6 +30,7 @@ if(post('csrf') && post('update')) {
     ]);
 
     message('Oplysninger opdateret!', 'info');
+    redirect_to('/admin?page=users&team_id=' . post('team_id'));
 }
 
 $team_id  = '';

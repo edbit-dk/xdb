@@ -18,6 +18,7 @@ if(post('csrf') && post('create')) {
         'feedback' => post('feedback')
     ]);
 
+    redirect_to('/admin?page=records&team_id=' . post('team_id'));
     message('Karakterblad oprettet!', 'info');
 }
 
@@ -36,6 +37,7 @@ if(post('csrf') && post('update')) {
          'user_id', '=', post('user_id')
      ]);
  
+     redirect_to('/admin?page=records&team_id=' . post('team_id'));
      message('Karakterblad opdateret!', 'info');
  }
 
