@@ -71,7 +71,7 @@ if (isset($_GET['user_id'])) {
     </select>
 </div>
 <br>
-<p align="left"><a href="?page=home">Gå tilbage</a></p>
+<p style="color: #015ab3; font-size: 20px; font-weight: 600;" align="left"><a href="?page=home">Tilbage</a></p>
 
 <table class="table table-hover table-striped">
 	<thead>

@@ -13,7 +13,7 @@ $teams = Team::list();
 <h5>Medarbejder</h5>
 <br>
     <a class="w-100 btn btn-lg btn-primary" href="?page=users">BRUGERE</a>
-    <select style="color: #015ab3; font-size: 30px; font-weight: 600;" id="users" onchange = "reloadUsers('users');">
+    <select style="color: #015ab3; font-size: 20px; font-weight: 600;" id="users" onchange = "reloadUsers('users');">
         <option>Vælg team</option>
         <?php foreach($teams as $team): ?>
         <option value="<?php echo $team->id; ?>"><?php echo $team->name; ?></option>
@@ -21,14 +21,12 @@ $teams = Team::list();
     </select>
     <br><br>
     <a class="w-100 btn btn-lg btn-primary" href="?page=records">KARAKTERBLADE</a>
-    <select style="color: #015ab3; font-size: 30px; font-weight: 600;" id="records" onchange = "reloadRecords('records');">
+    <select style="color: #015ab3; font-size: 20px; font-weight: 600;" id="records" onchange = "reloadRecords('records');">
         <option>Vælg team</option>    
         <?php foreach($teams as $team): ?>
         <option value="<?php echo $team->id; ?>"><?php echo $team->name; ?></option>
         <?php endforeach ?>
     </select>
-    <br><br>
-    <a href="../">Hjem</a>
 </main>
 
 <script>
