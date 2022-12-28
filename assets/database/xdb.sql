@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Vært: localhost
--- Genereringstid: 28. 12 2022 kl. 19:15:54
+-- Genereringstid: 28. 12 2022 kl. 19:33:04
 -- Serverversion: 8.0.31
 -- PHP-version: 7.4.33
 
@@ -33,9 +33,9 @@ CREATE TABLE `xdb_records` (
   `admin_id` int NOT NULL,
   `subject_id` int NOT NULL,
   `team_id` int NOT NULL,
-  `avg_grade` tinyint DEFAULT NULL,
-  `winter_grade` tinyint DEFAULT NULL,
-  `summer_grade` tinyint DEFAULT NULL,
+  `avg_grade` tinyint DEFAULT '0',
+  `winter_grade` tinyint DEFAULT '0',
+  `summer_grade` tinyint DEFAULT '0',
   `feedback` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
