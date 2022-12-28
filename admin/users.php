@@ -1,54 +1,4 @@
-<?php 
-
-require_once("../bootstrap.php");
-
-if (post('csrf') && post('create')) {
-
-    User::create([
-        'fullname' => post('fullname'),
-        'username' => post('username'),
-        'password' => post('password'),
-        'team_id' => post('team_id'),
-        'admin' => post('admin')
-    ]);
-    
-    redirect_to('/admin?page=users&team_id=' . post('team_id'));
-    message("Bruger oprettet!", 'info');
-}
-
-if(post('csrf') && post('update')) {
-    
-   $status = User::update([
-        'team_id' => post('team_id'),
-        'fullname' => post('fullname'),
-        'password' => post('password')
-    ], 
-    [
-        'id', '=', post('user_id')
-    ]);
-
-    redirect_to('/admin?page=users&team_id=' . post('team_id'));
-    message('Oplysninger opdateret!', 'info');
-}
-
-$team_id  = '';
-$user_id = '';
-$teams = Team::list();
-
-if (isset($_GET['user_id'])) {
-    $user_id = $_GET['user_id'];
-    $users = User::data($user_id);
-
-} elseif(isset($_GET['team_id'])) {
-    $team_id = $_GET['team_id'];
-    $users = User::teams($team_id);
-
-} else {
-    $users = User::list();
-}
-
-require 'header.php';
-?>
+<?php require 'header.php'; ?>
 <div class="container" style="margin-top: 90px"> 
 <?php check_messages(); ?>
 <caption><h3 align="left">BRUGERE</h3></caption>
@@ -62,7 +12,7 @@ require 'header.php';
 </form>
 <br>
 <p style="color: #015ab3; font-size: 20px; font-weight: 600;" align="left"><a href="?page=home">TILBAGE</a></p>
-
+<div class="table-responsive">
 <table class="table table-hover table-striped">
 	<thead>
 		<tr>
@@ -100,6 +50,7 @@ require 'header.php';
         <?php endif ?>
     </tbody>	
 </table>
+</div>
 </div><!--End of container-->
 
 <script>

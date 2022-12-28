@@ -1,66 +1,4 @@
-<?php 
-
-require_once("../bootstrap.php");
-
-require 'header.php';
-
-
-if(post('csrf') && post('create')) {
-
-    $status = Record::create([
-        'subject_id' => post('subject_id'),
-        'user_id' => post('user_id'),
-        'admin_id' => post('admin_id'),
-        'team_id' => post('team_id'),
-        'avg_grade' => post('avg_grade'),
-        'winter_grade' => post('winter_grade'),
-        'summer_grade' => post('summer_grade'),
-        'feedback' => post('feedback')
-    ]);
-
-    redirect_to('/admin?page=records&team_id=' . post('team_id'));
-    message('Karakterblad oprettet!', 'info');
-}
-
-if(post('csrf') && post('update')) {
-
-    $status = Record::update([
-        'subject_id' => post('subject_id'),
-        'admin_id' => post('admin_id'),
-        'team_id' => post('team_id'),
-        'avg_grade' => post('avg_grade'),
-        'winter_grade' => post('winter_grade'),
-        'summer_grade' => post('summer_grade'),
-        'feedback' => post('feedback')
-     ], 
-     [
-         'user_id', '=', post('user_id')
-     ]);
- 
-     redirect_to('/admin?page=records&team_id=' . post('team_id'));
-     message('Karakterblad opdateret!', 'info');
- }
-
-$team_id = '';
-$user_id = '';
-$admins = User::admins();
-$teams = Team::list();
-$subjects = Subject::list();
-
-if (isset($_GET['user_id'])) {
-    $user_id = $_GET['user_id'];
-    $records = Record::user($user_id);
-    $user = User::data($user_id)->first();
-
-} elseif(isset($_GET['team_id'])) {
-    $team_id = $_GET['team_id'];
-    $records = Record::teams($team_id);
-
-}else {
-    $records = Record::list();
-}
-
-?>
+<?php require 'header.php'; ?>
 <div class="container" style="margin-top: 90px"> 
 <?php check_messages(); ?>
 <caption><h3 align="left">KARAKTERBLADE</h3></caption>
@@ -75,6 +13,7 @@ if (isset($_GET['user_id'])) {
 <br>
 <p style="color: #015ab3; font-size: 20px; font-weight: 600;" align="left"><a href="?page=home">TILBAGE</a></p>
 
+<div class="table-responsive">
 <table class="table table-hover table-striped">
 	<thead>
 		<tr>
@@ -123,7 +62,7 @@ if (isset($_GET['user_id'])) {
         <?php endif ?>
     </tbody>	
 </table>
-
+</div>
 <?php if(!empty($user_id)): ?>
 <p>Nyt KARAKTERBLAD:</p>
 <form action="?page=records" method="POST">

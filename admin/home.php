@@ -12,7 +12,7 @@ $teams = Team::list();
 <h1 class="h3 mb-3 fw-normal"><span style="color: #015ab3; font-size: 30px; font-weight: 600;">X</span>DB</h1>
 <h5>Medarbejder</h5>
 <br>
-    <h3>BRUGERE</h3>
+    <h3>BRUGERE:</h3>
     <select style="color: #015ab3; font-size: 30px; font-weight: 600;" id="users" onchange = "reloadUsers('users');">
         <option>VÆLG TEAM</option>
         <option value="0">ALLE</option>
@@ -21,7 +21,7 @@ $teams = Team::list();
         <?php endforeach ?>
     </select>
     <br><br>
-    <h3>KARAKTERBLADE</h3>
+    <h3>KARAKTERBLADE:</h3>
     <select style="color: #015ab3; font-size: 30px; font-weight: 600;" id="records" onchange = "reloadRecords('records');">
         <option>VÆLG TEAM</option>
         <option value="0">ALLE</option>    
