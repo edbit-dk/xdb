@@ -72,6 +72,9 @@ class User
 
         $data = $db->query("SELECT * FROM {$table} WHERE {$user_name} = ? AND {$pass_word} = ? AND {$user_admin} = ?", [$username, $password, $admin]);
 
+        var_dump($data);
+        die;
+
         if($data->results()) {
             return $data->first();
         } else {

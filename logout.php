@@ -1,6 +1,10 @@
-<?php 
-	echo '<script>alert("Goodbye!")</script>';
+<?php
+	require_once("bootstrap.php");
+
+	message('Du er logget ud!', 'success');
+	
 	session_start();
-	$_SESSION["user"] = "";
+	session('user','');	
 	session_destroy();
-	header('location: index.php');
+
+	redirect_to('/');
