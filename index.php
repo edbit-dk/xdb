@@ -13,6 +13,7 @@ switch ($view) {
 		break;
 
 	case 'records' :
+		studconfirm_logged_in();
 		$title="Karakterblad";	
 		$content ='records.php';
 		break;

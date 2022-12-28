@@ -7,7 +7,8 @@ $content='home.php';
 $view = (isset($_GET['page']) && $_GET['page'] != '') ? $_GET['page'] : '';
 switch ($view) {
 
-	case 'home' :
+	case 'home':
+		confirm_logged_in(); 
         $title="XDB";	
 		$content='home.php';
 		break;
@@ -18,16 +19,19 @@ switch ($view) {
 		break;
 
 	case 'users':
+		confirm_logged_in();
 		$title="Brugere";	
 		$content ='users.php';
 		break;
-		
+
 	case 'records':
+		confirm_logged_in();
 	    $title="Karakterblad";	
 		$content ='records.php';
 		break;
-				
+
 	default:
+		confirm_logged_in();
 	    $title="XDB";	
 		$content ='home.php';		
 }
