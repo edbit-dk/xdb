@@ -29,6 +29,28 @@ $teams = Team::list();
         <option value="<?php echo $team->id; ?>"><?php echo $team->name; ?></option>
         <?php endforeach ?>
     </select>
+   <br><br>
+    <h3>NY BRUGER:</h3>
+    <form action="?page=users" method="POST">
+    <label>Navn: <input type="text" name="fullname"></label>
+    <label>Brugernavn: <input type="text" name="username"></label>
+    <label>Adgangskode: <input type="text" name="password"></label>
+    <label>Team: 
+    <select name="team_id" >
+        <?php foreach($teams as $team): ?>
+        <option value="<?php echo $team->id; ?>"><?php echo $team->name; ?></option>
+        <?php endforeach ?>
+    </select> 
+    </label>
+    <label> Admin: 
+    <select name="admin" >
+        <option value="0">Nej</option>
+        <option value="1">Ja</option></select> 
+    </select> 
+    </label>
+    <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
+    <input class="btn btn-success" name="create" type="submit" value="Opret">
+    </form>
 </main>
 
 <script>

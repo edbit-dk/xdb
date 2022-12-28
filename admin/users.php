@@ -14,6 +14,7 @@ if (post('csrf') && post('create')) {
         'admin' => post('admin')
     ]);
     
+    redirect_to('/admin?page=users&team_id=' . post('team_id'));
     message("Bruger oprettet!", 'info');
 }
 
@@ -28,6 +29,7 @@ if(post('csrf') && post('update')) {
         'id', '=', post('user_id')
     ]);
 
+    redirect_to('/admin?page=users&team_id=' . post('team_id'));
     message('Oplysninger opdateret!', 'info');
 }
 
@@ -46,8 +48,6 @@ if (isset($_GET['user_id'])) {
 } else {
     $users = User::list();
 }
-
-
 
 ?>
 <div class="container" style="margin-top: 90px"> 
@@ -101,27 +101,6 @@ if (isset($_GET['user_id'])) {
         <?php endif ?>
     </tbody>	
 </table>
-<p>Ny BRUGER:</p>
-    <form action="?page=users" method="POST">
-    <label>Navn: <input type="text" name="fullname"></label>
-    <label>Brugernavn: <input type="text" name="username"></label>
-    <label>Adgangskode: <input type="text" name="password"></label>
-    <label>Team: 
-    <select name="team_id" >
-        <?php foreach($teams as $team): ?>
-        <option value="<?php echo $team->id; ?>"><?php echo $team->name; ?></option>
-        <?php endforeach ?>
-    </select> 
-    </label>
-    <label> Admin: 
-    <select name="admin" >
-        <option value="0">Nej</option>
-        <option value="1">Ja</option></select> 
-    </select> 
-    </label>
-    <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
-    <input class="btn btn-success" name="create" type="submit" value="Opret">
-    </form>
 </div><!--End of container-->
 
 <script>
