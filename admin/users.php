@@ -51,7 +51,7 @@ if (isset($_GET['user_id'])) {
 
 ?>
 <div class="container" style="margin-top: 90px"> 
-<?php check_message(); ?>
+<?php check_messages(); ?>
 <caption><h3 align="left">BRUGERE</h3></caption>
 <form align="left">
     <select style="color: #015ab3; font-size: 30px; font-weight: 600;" name="team_id" id="teams" onchange = "reloadTeams('teams');">
