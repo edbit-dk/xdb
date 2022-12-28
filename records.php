@@ -26,7 +26,7 @@ if(post('csrf') && post('update')) {
 ?>
 <div class="container" style="margin-top: 50px"> 
 <?php check_messages(); ?>
-<caption><h3>Karakterblad for: <span style="color: #015ab3; font-weight: 600;"><?php echo session('user')->fullname; ?> (<?php echo session('user')->username; ?>) - <?php 
+<caption><h3>KARAKTERBLAD FOR: <span style="color: #015ab3; font-weight: 600;"><?php echo session('user')->fullname; ?> (<?php echo session('user')->username; ?>) - <?php 
 foreach($teams as $team) {
     if($team->id == session('user')->team_id) {
         echo $team->name;
