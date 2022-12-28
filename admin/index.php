@@ -86,7 +86,7 @@ switch ($view) {
 				'feedback' => post('feedback')
 			]);
 		
-			redirect_to('/admin?page=records&team_id=' . post('team_id'));
+			redirect_to('/admin?page=records&user_id=' . post('user_id'));
 			message('Karakterblad oprettet!', 'info');
 		}
 		
