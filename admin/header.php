@@ -1,1 +1,1 @@
-<p>ADMIN: (<?php echo session('user')->username; ?>) <a class="btn btn-danger" href="../logout.php">Log ud?</a></p>
+<h5>ADMIN: <b><?php echo session('user')->username; ?></b> <a class="btn btn-danger" href="../logout.php">Log ud?</a></h5>
