@@ -36,6 +36,7 @@ if(post('csrf')) {
       <label for="floatingPassword">Adgangskode</label>
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Log ind</button>
-    <a href="../">Hjem</a>
+    <br><br>
+    <a style="color: #015ab3; font-size: 20px; font-weight: 600;" href="../">Tilbage</a>
   </form>
 </main>

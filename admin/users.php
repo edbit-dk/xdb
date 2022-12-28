@@ -61,6 +61,7 @@ if (isset($_GET['user_id'])) {
         <?php endforeach ?>
     </select>
 </form>
+<br>
 <p align="left"><a href="?page=home">Gå tilbage</a></p>
 
 <table class="table table-hover table-striped">
@@ -100,6 +101,8 @@ if (isset($_GET['user_id'])) {
         <?php endif ?>
     </tbody>	
 </table>
+
+
 <p>Ny BRUGER:</p>
     <form action="?page=users" method="POST">
     <label>Navn: <input type="text" name="fullname"></label>

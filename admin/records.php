@@ -7,22 +7,15 @@ require 'header.php';
 
 if(post('csrf') && post('create')) {
 
-    $grade = average_grade([
-        'course_grade' => post('course_grade'),
-        'winter_grade' => post('winter_grade'),
-        'summer_grade' => post('summer_grade'),
-    ]);
-
     $status = Record::create([
         'subject_id' => post('subject_id'),
         'user_id' => post('user_id'),
         'admin_id' => post('admin_id'),
         'team_id' => post('team_id'),
-        'course_grade' => post('course_grade'),
+        'avg_grade' => post('avg_grade'),
         'winter_grade' => post('winter_grade'),
         'summer_grade' => post('summer_grade'),
-        'final_grade' => $grade['avg'],
-        'feedback' => $grade['remarks'] . post('feedback')
+        'feedback' => post('feedback')
     ]);
 
     message('Karakterblad oprettet!', 'info');
@@ -30,20 +23,13 @@ if(post('csrf') && post('create')) {
 
 if(post('csrf') && post('update')) {
 
-    $grade = average_grade([
-        'course_grade' => post('course_grade'),
-        'winter_grade' => post('winter_grade'),
-        'summer_grade' => post('summer_grade'),
-    ]);
-
     $status = Record::update([
         'subject_id' => post('subject_id'),
         'admin_id' => post('admin_id'),
         'team_id' => post('team_id'),
-        'course_grade' => post('course_grade'),
+        'avg_grade' => post('avg_grade'),
         'winter_grade' => post('winter_grade'),
         'summer_grade' => post('summer_grade'),
-        'final_grade' => $grade['avg'],
         'feedback' => post('feedback')
      ], 
      [
@@ -84,7 +70,9 @@ if (isset($_GET['user_id'])) {
         <?php endforeach ?>
     </select>
 </div>
+<br>
 <p align="left"><a href="?page=home">Gå tilbage</a></p>
+
 <table class="table table-hover table-striped">
 	<thead>
 		<tr>
@@ -92,10 +80,9 @@ if (isset($_GET['user_id'])) {
             <th>Bruger</th>
             <th>Admin</th>
             <th>Klasse</th>
-            <th>Forløb</th> 
+            <th>Gennemsnit</th> 
             <th>1. Standpunkt (vinter)</th>
             <th>2. Standpunkt (sommer)</th>
-            <th>Gennemsnit</th>
             <th>Feedback</th>
             <th>Handlinger</th>
 		</tr>	
@@ -119,10 +106,9 @@ if (isset($_GET['user_id'])) {
                 <option value="<?php echo $team->id; ?>" <?php if($team->id == $record->team_id): ?> selected <?php endif ?>><?php echo $team->name; ?></option>
                 <?php endforeach ?>
             </select> </td>
-            <td><input type="text" min="-3" max="12" name="course_grade" value="<?php echo $record->course_grade; ?>"></td>
+            <td><input type="text" min="-3" max="12" name="avg_grade" value="<?php echo $record->avg_grade; ?>"></td>
             <td><input type="text" min="-3" max="12" name="winter_grade" value="<?php echo $record->winter_grade; ?>"></td>
             <td><input type="text" min="-3" max="12" name="summer_grade" value="<?php echo $record->summer_grade; ?>"></td>
-            <td><?php echo $record->final_grade; ?></td>
             <td><textarea name="feedback"><?php echo $record->feedback; ?></textarea></td>
             <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
             <td>
@@ -135,6 +121,7 @@ if (isset($_GET['user_id'])) {
         <?php endif ?>
     </tbody>	
 </table>
+
 <?php if(!empty($user_id)): ?>
 <p>Nyt KARAKTERBLAD:</p>
 <form action="?page=records" method="POST">
@@ -178,7 +165,7 @@ if (isset($_GET['user_id'])) {
     </div>
     <br>
     <div class="form-group">
-    <label>Forløb: <input min="-3" max="12" name="course_grade" type="number" value="0"></label>
+    <label>Gennemsnit: <input min="-3" max="12" name="avg_grade" type="number" value="0"></label>
     </div>
     <br>
     <div class="form-group">

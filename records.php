@@ -25,7 +25,7 @@ if(post('csrf') && post('update')) {
 
 ?>
 <div class="container" style="margin-top: 50px"> 
-<?php check_message(); ?>
+<?php check_messages(); ?>
 <caption><h3>Karakterblad for: <span style="color: #015ab3; font-weight: 600;"><?php echo session('user')->fullname; ?> (<?php echo session('user')->username; ?>) - <?php 
 foreach($teams as $team) {
     if($team->id == session('user')->team_id) {
@@ -34,15 +34,15 @@ foreach($teams as $team) {
 }
 ?></span> </h3></caption>
 <br>
+<div class="table-responsive">
 <table class="table table-hover table-striped">
 	<thead>
 		<tr>
             <th>Klasse</th>
             <th>Fag</th> 
-            <th>Forløb</th>
+            <th>Gennemsnit</th>
             <th>1. Standpunkt (vinter)</th>
             <th>2. Standpunkt (sommer)</th>
-            <th>Gennemsnit</th>
             <th>Feedback</th>
 		</tr>	
 	</thead>
@@ -64,16 +64,16 @@ foreach($teams as $team) {
             }
         }
         ?></td>
-            <td style="color: #015ab3; font-size: 30px; font-weight: 600;"><?php echo $record->course_grade; ?></td>
+            <td style="color: #015ab3; font-size: 30px; font-weight: 600;"><?php echo $record->avg_grade; ?></td>
             <td style="color: #015ab3; font-size: 30px; font-weight: 600;"><?php echo $record->winter_grade; ?></td>
             <td style="color: #015ab3; font-size: 30px; font-weight: 600;"><?php echo $record->summer_grade; ?></td>
-            <td style="color: #015ab3; font-size: 30px; font-weight: 600;"><?php echo $record->final_grade; ?></td>
             <td><textarea style="color: #015ab3; font-weight: 600;" cols="50" disabled><?php echo $record->feedback; ?></textarea></td>
         </tr>
         <?php endforeach ?>
         <?php endif ?>
     </tbody>	
 </table>
+</div>
 <br>
 
 </div><!--End of container-->

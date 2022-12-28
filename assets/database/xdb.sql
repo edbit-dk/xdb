@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Vært: localhost
--- Genereringstid: 28. 12 2022 kl. 08:57:38
+-- Genereringstid: 28. 12 2022 kl. 19:15:54
 -- Serverversion: 8.0.31
 -- PHP-version: 7.4.33
 
@@ -33,10 +33,9 @@ CREATE TABLE `xdb_records` (
   `admin_id` int NOT NULL,
   `subject_id` int NOT NULL,
   `team_id` int NOT NULL,
-  `course_grade` double DEFAULT NULL,
-  `winter_grade` double DEFAULT NULL,
-  `summer_grade` double DEFAULT NULL,
-  `final_grade` double DEFAULT NULL,
+  `avg_grade` tinyint DEFAULT NULL,
+  `winter_grade` tinyint DEFAULT NULL,
+  `summer_grade` tinyint DEFAULT NULL,
   `feedback` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -70,7 +69,7 @@ CREATE TABLE `xdb_teams` (
 
 CREATE TABLE `xdb_users` (
   `id` int NOT NULL,
-  `team_id` int NOT NULL,
+  `team_id` int NOT NULL DEFAULT '0',
   `username` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `fullname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
