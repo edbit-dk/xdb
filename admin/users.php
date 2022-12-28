@@ -2,8 +2,6 @@
 
 require_once("../bootstrap.php");
 
-require 'header.php';
-
 if (post('csrf') && post('create')) {
 
     User::create([
@@ -49,6 +47,7 @@ if (isset($_GET['user_id'])) {
     $users = User::list();
 }
 
+require 'header.php';
 ?>
 <div class="container" style="margin-top: 90px"> 
 <?php check_messages(); ?>
