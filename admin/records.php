@@ -92,7 +92,7 @@ if (isset($_GET['user_id'])) {
 	<tbody>
         <?php if(!empty($records)): ?>
         <?php foreach($records as $record): ?>
-        <tr>
+         <tr style="color: #015ab3; font-size: 20px; font-weight: 600;">
         <form action="?page=records" method="POST">
             <td><select name="subject_id" >
                 <?php foreach($subjects as $subject): ?>
@@ -114,8 +114,8 @@ if (isset($_GET['user_id'])) {
             <td><textarea name="feedback"><?php echo $record->feedback; ?></textarea></td>
             <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
             <td>
-                <input class="btn btn-secondary" name="update" type="submit" value="Gem">
-                <input class="btn btn-danger" onclick="return confirm('Er du sikker?');" name="delete" type="submit" value="Slet">
+                <input class="btn btn-secondary" name="update" type="submit" value="GEM">
+                <input class="btn btn-danger" onclick="return confirm('Er du sikker?');" name="delete" type="submit" value="SLET">
             </td>
         </form>
         </tr>

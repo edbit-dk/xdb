@@ -37,10 +37,22 @@ var team = 1
 function reloadUsers(selectID){
      team = document.getElementById(selectID).value;
      location.href = '?page=users&team_id=' + team;
+
+     if(team != 0) {
+        location.href = '?page=users&team_id=' + team;
+     } else {
+        location.href = '?page=users';
+     }
 }
 
 function reloadRecords(selectID){
      team = document.getElementById(selectID).value;
      location.href = '?page=records&team_id=' + team;
+
+     if(team != 0) {
+        location.href = '?page=records&team_id=' + team;
+     } else {
+        location.href = '?page=records';
+     }
 }
 </script>

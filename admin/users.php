@@ -78,7 +78,7 @@ if (isset($_GET['user_id'])) {
 	<tbody>
         <?php if(!empty($users)): ?>
         <?php foreach($users as $user): ?>
-        <tr>
+        <tr style="color: #015ab3; font-size: 20px; font-weight: 600;">
         <form action="?page=users" method="POST">
             <td><select name="team_id" >
                 <?php foreach($teams as $team): ?>
@@ -91,10 +91,10 @@ if (isset($_GET['user_id'])) {
             <input type="hidden" name="user_id" value="<?php echo $user->id; ?>">
             <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
             <td>
-                <input class="btn btn-secondary" name="update" type="submit" value="Gem">
-                <input class="btn btn-danger" onclick="return confirm('Er du sikker?');" name="delete" type="submit" value="Slet">
+                <input class="btn btn-secondary" name="update" type="submit" value="GEM">
+                <input class="btn btn-danger" onclick="return confirm('Er du sikker?');" name="delete" type="submit" value="SLET">
             </td>
-            <td><a class="btn btn-primary"  href="?page=records&user_id=<?php echo $user->id; ?>">Vis</a></td>
+            <td><a class="btn btn-primary"  href="?page=records&user_id=<?php echo $user->id; ?>">VIS</a></td>
         </form>
         </tr>
         <?php endforeach ?>
