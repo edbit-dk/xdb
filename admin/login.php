@@ -25,7 +25,7 @@ if(post('csrf')) {
   <form action="login.php" method="POST">
     <h1 class="h3 mb-3 fw-normal"><span style="color: #015ab3; font-size: 30px; font-weight: 600;">X</span>DB</h1>
     <h5>Medarbejder</h5>
-    <p><?php check_message(); ?></p>
+    <?php check_messages(); ?>
     <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
     <div class="form-floating">
       <input type="text" name="username" class="form-control" id="floatingInput" autofocus="" autocomplete="off">

@@ -35,7 +35,7 @@
 			return $_SESSION['message'];
 	  }
 	}
-	function check_message(){
+	function check_messages(){
 	
 		if(isset($_SESSION['message'])){
 			if(isset($_SESSION['msgtype'])){
