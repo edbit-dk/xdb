@@ -64,8 +64,8 @@ if (isset($_GET['user_id'])) {
 <div class="container" style="margin-top: 90px"> 
 <?php check_messages(); ?>
 <caption><h3 align="left">KARAKTERBLADE</h3></caption>
-<div align="left">
-    <select style="color: #015ab3; font-size: 30px; font-weight: 600;" name="team_id" id="teams" onchange = "reloadTeams('teams');">
+<div style="color: #015ab3; font-size: 30px; font-weight: 600;" align="left">
+    <select name="team_id" id="teams" onchange = "reloadTeams('teams');">
         <option value="0">ALLE</option>
         <?php foreach($teams as $team): ?>
         <option value="<?php echo $team->id; ?>" <?php if($team->id == $team_id): ?> selected <?php endif ?>><?php echo $team->name; ?></option>
@@ -73,7 +73,7 @@ if (isset($_GET['user_id'])) {
     </select>
 </div>
 <br>
-<p style="color: #015ab3; font-size: 20px; font-weight: 600;" align="left"><a href="?page=home">Tilbage</a></p>
+<p style="color: #015ab3; font-size: 20px; font-weight: 600;" align="left"><a href="?page=home">TILBAGE</a></p>
 
 <table class="table table-hover table-striped">
 	<thead>

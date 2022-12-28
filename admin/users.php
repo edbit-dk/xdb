@@ -15,7 +15,6 @@ if (post('csrf') && post('create')) {
     ]);
     
     message("Bruger oprettet!", 'info');
-    redirect_to('/admin?page=users&team_id=' . post('team_id'));
 }
 
 if(post('csrf') && post('update')) {
@@ -30,7 +29,6 @@ if(post('csrf') && post('update')) {
     ]);
 
     message('Oplysninger opdateret!', 'info');
-    redirect_to('/admin?page=users&team_id=' . post('team_id'));
 }
 
 $team_id  = '';
@@ -39,7 +37,7 @@ $teams = Team::list();
 
 if (isset($_GET['user_id'])) {
     $user_id = $_GET['user_id'];
-    $users = User::data($user_id)->results();
+    $users = User::data($user_id);
 
 } elseif(isset($_GET['team_id'])) {
     $team_id = $_GET['team_id'];
@@ -64,7 +62,7 @@ if (isset($_GET['user_id'])) {
     </select>
 </form>
 <br>
-<p style="color: #015ab3; font-size: 20px; font-weight: 600;" align="left"><a href="?page=home">Tilbage</a></p>
+<p style="color: #015ab3; font-size: 20px; font-weight: 600;" align="left"><a href="?page=home">TILBAGE</a></p>
 
 <table class="table table-hover table-striped">
 	<thead>
@@ -103,8 +101,6 @@ if (isset($_GET['user_id'])) {
         <?php endif ?>
     </tbody>	
 </table>
-
-
 <p>Ny BRUGER:</p>
     <form action="?page=users" method="POST">
     <label>Navn: <input type="text" name="fullname"></label>
