@@ -6,16 +6,10 @@ require 'header.php';
 
 if (post('csrf') && post('create')) {
 
-    $password = post('password');
-
-    if(empty($password)) {
-        $password = uniqid();
-    }
-
     User::create([
         'fullname' => post('fullname'),
         'username' => post('username'),
-        'password' => $password,
+        'password' => post('password'),
         'team_id' => post('team_id'),
         'admin' => post('admin')
     ]);
@@ -28,7 +22,7 @@ if(post('csrf') && post('update')) {
    $status = User::update([
         'team_id' => post('team_id'),
         'fullname' => post('fullname'),
-        'password' => md5(post('password'))
+        'password' => post('password')
     ], 
     [
         'id', '=', post('user_id')

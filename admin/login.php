@@ -4,7 +4,7 @@ require_once("../bootstrap.php");
 
 if(post('csrf')) {
 
-  $auth = User::auth(post('user_name'), post('pass_word'), 1);
+  $auth = User::auth(post('username'), post('password'), 1);
 
   if($auth) {
   session('user', $auth);
@@ -23,16 +23,16 @@ if(post('csrf')) {
 
 <main class="form-signin w-100 m-auto" style="background-color: white; box-shadow: 11px 30px 154px 2px rgb(0 0 0 / 34%); padding: 50px;">
   <form action="login.php" method="POST">
-    <h1 class="h3 mb-3 fw-normal"><span style="color: #015ab3; font-size: 30px; font-weight: 600;">Uni</span>login</h1>
+    <h1 class="h3 mb-3 fw-normal"><span style="color: #015ab3; font-size: 30px; font-weight: 600;">X</span>DB</h1>
     <h5>Medarbejder</h5>
     <p><?php check_message(); ?></p>
     <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
     <div class="form-floating">
-      <input type="text" name="user_name" class="form-control" id="floatingInput" autofocus="" autocomplete="off">
+      <input type="text" name="username" class="form-control" id="floatingInput" autofocus="" autocomplete="off">
       <label for="floatingInput">Brugernavn</label>
     </div>
     <div class="form-floating">
-      <input type="password" name="pass_word" class="form-control" id="floatingPassword" autocomplete="off">
+      <input type="password" name="password" class="form-control" id="floatingPassword" autocomplete="off">
       <label for="floatingPassword">Adgangskode</label>
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Log ind</button>

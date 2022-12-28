@@ -3,7 +3,7 @@
 class User
 {
 	
-	protected static $table = "users";
+	protected static $table = DB_PREFIX . "users";
 
     protected static $fields = [
        'id',
@@ -13,14 +13,6 @@ class User
        'admin',
        'team_id'
     ];
-
-     protected static $groups = [
-        'STAFF',
-        'PERSONEL',
-        '7',
-        '8',
-        '9'
-     ];
 
     public static function fields()
     {
@@ -78,11 +70,14 @@ class User
         $pass_word = self::$fields[2];
         $user_admin = self::$fields[4];
 
-        if($username && $password) {
-            return $db->query("SELECT * FROM {$table} WHERE {$user_name} = ? AND {$pass_word} = ? AND {$user_admin} = ?", [$username, $password, $admin])->first();
+        $data = $db->query("SELECT * FROM {$table} WHERE {$user_name} = ? AND {$pass_word} = ? AND {$user_admin} = ?", [$username, $password, $admin]);
+
+        if($data->results()) {
+            return $data->first();
         } else {
-            return $db->get(self::$table, [self::$fields[1], '=', $username])->first();
+            return false;
         }
+
     }
 
 }

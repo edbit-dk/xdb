@@ -3,7 +3,7 @@
 class Record
 {
 	
-	protected static $table = "records";
+	protected static $table = DB_PREFIX . "records";
 
     protected static $fields = [
        'id',

@@ -43,7 +43,7 @@
 	}
 	function __autoload($class_name) {
 		$class_name = strtolower($class_name);
-		$path = LIB_PATH.DS."{$class_name}.class.php";
+		$path = LIB_PATH.DS."classes/{$class_name}.class.php";
 		if(file_exists($path)){
 			require_once($path);
 		}else{

@@ -3,7 +3,7 @@
 class Subject
 {
 	
-	protected static $table = "subjects";
+	protected static $table = DB_PREFIX . "subjects";
 
     protected static $fields = [
        'id',

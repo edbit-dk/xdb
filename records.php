@@ -6,15 +6,34 @@ $teams = Team::list();
 $subjects = Subject::list();
 $records = Record::user(session('user')->id);
 
+if(post('csrf') && post('update')) {
+    
+    $status = User::update([
+         'password' => post('password')
+     ], 
+     [
+         'id', '=', post('user_id')
+     ]);
+
+     session('user')->password = post('password');
+
+     message('Oplysninger opdateret!', 'info');
+
+     redirect_to('?page=records');
+
+ }
+
 ?>
-<div class="container" style="margin-top: 90px"> 
-<caption><h3 align="left">Karakterblad for: <span style="color: #015ab3; font-size: 30px; font-weight: 600;"><?php echo session('user')->fullname; ?> (<?php 
+<div class="container" style="margin-top: 50px"> 
+<?php check_message(); ?>
+<caption><h3>Karakterblad for: <span style="color: #015ab3; font-weight: 600;"><?php echo session('user')->fullname; ?> (<?php echo session('user')->username; ?>) - <?php 
 foreach($teams as $team) {
     if($team->id == session('user')->team_id) {
         echo $team->name;
     }
 }
-?>)</span></h3></caption>
+?></span> </h3></caption>
+<br>
 <table class="table table-hover table-striped">
 	<thead>
 		<tr>
@@ -55,5 +74,6 @@ foreach($teams as $team) {
         <?php endif ?>
     </tbody>	
 </table>
+<br>
 
 </div><!--End of container-->

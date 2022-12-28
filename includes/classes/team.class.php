@@ -3,7 +3,7 @@
 class Team
 {
 	
-	protected static $table = "teams";
+	protected static $table = DB_PREFIX . "teams";
 
     protected static $fields = [
        'id',
