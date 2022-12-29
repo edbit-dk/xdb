@@ -115,7 +115,7 @@ switch ($view) {
 				'feedback' => post('feedback')
 			 ], 
 			 [
-				 'user_id', '=', post('user_id')
+				 'id', '=', post('record_id')
 			 ]);
 		 
 			 redirect_to('/admin?page=records&user_id=' . post('user_id'));

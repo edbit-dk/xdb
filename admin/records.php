@@ -38,6 +38,7 @@
                 <option value="<?php echo $subject->id; ?>" <?php if($subject->id == $record->subject_id): ?> selected <?php endif ?>><?php echo $subject->name; ?></option>
                 <?php endforeach ?>
             </select> </td>
+            <input type="hidden" name="record_id" value="<?php echo $record->id; ?>">
             <input type="hidden" name="user_id" value="<?php echo $record->user_id; ?>">
             <input type="hidden" name="admin_id" value="<?php echo session('user')->id; ?>">
             <td><a class="btn btn-info" href="?page=users&user_id=<?php echo $record->user_id; ?>"><?php echo $record->user_id; ?></a></td>
