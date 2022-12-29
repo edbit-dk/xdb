@@ -19,6 +19,19 @@ switch ($view) {
 		break;
 
 	case 'login' && 'error':
+		if(post('csrf')) {
+
+			$auth = User::auth(post('username'), post('password'));
+		  
+			if($auth) {
+			$_SESSION['user'] = $auth;
+			redirect_to('?page=records');
+			} else {
+			  message('Fejl i loginoplysninger. <br> Prøv igen eller kontakt skolens IT-vejleder.','error');
+			  redirect_to('?page=login?error=1');
+			}
+		  
+		}
         $title="Log på";	
 		$content='login.php';
 		break;

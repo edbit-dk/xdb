@@ -8,12 +8,25 @@ $view = (isset($_GET['page']) && $_GET['page'] != '') ? $_GET['page'] : '';
 switch ($view) {
 
 	case 'home':
-		confirm_logged_in(); 
+		confirm_logged_in();
         $title="XDB";	
 		$content='home.php';
 		break;
 	
 	case 'login' :
+		if(post('csrf')) {
+
+			$auth = User::auth(post('username'), post('password'), 1);
+		  
+			if($auth) {
+			$_SESSION['user'] = $auth;
+			redirect_to('/admin/?page=home');
+			} else {
+			  message('Fejl i loginoplysninger. <br> Prøv igen eller kontakt skolens IT-vejleder.','error');
+			  redirect_to('/admin/?page=login?error=1');
+			}
+		  
+		}
         $title="Log på";	
 		$content='login.php';
 		break;
@@ -139,4 +152,4 @@ switch ($view) {
 }
 
 require_once '../assets/theme/templates.php';
-?>
+

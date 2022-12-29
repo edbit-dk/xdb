@@ -5,7 +5,11 @@
 	
 	//create a new function to check if the session variable member_id is on set
 	function logged_in() {
-		return isset($_SESSION['user']);
+		if(isset($_SESSION['user']) && $_SESSION['user']->admin == 1) {
+			return true;
+		} else {
+			return false;
+		}
         
 	}
 	//this function if session member is not set then it will be redirected to login.php
