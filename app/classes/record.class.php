@@ -11,10 +11,10 @@ class Record
        'admin_id',
        'subject_id',
        'team_id',
-       'final_grade',
        'winter_grade',
+       'winter_feedback',
        'summer_grade',
-       'course_grade'
+       'summer_feedback'
     ];
 
     public static function fields()

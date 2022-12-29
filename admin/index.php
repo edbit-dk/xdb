@@ -93,10 +93,10 @@ switch ($view) {
 				'user_id' => post('user_id'),
 				'admin_id' => post('admin_id'),
 				'team_id' => post('team_id'),
-				'avg_grade' => post('avg_grade'),
 				'winter_grade' => post('winter_grade'),
+				'winter_feedback' => post('winter_feedback'),
 				'summer_grade' => post('summer_grade'),
-				'feedback' => post('feedback')
+				'summer_feedback' => post('summer_feedback')
 			]);
 		
 			redirect_to('/admin?page=records&user_id=' . post('user_id'));
@@ -109,10 +109,10 @@ switch ($view) {
 				'subject_id' => post('subject_id'),
 				'admin_id' => post('admin_id'),
 				'team_id' => post('team_id'),
-				'avg_grade' => post('avg_grade'),
 				'winter_grade' => post('winter_grade'),
+				'winter_feedback' => post('winter_feedback'),
 				'summer_grade' => post('summer_grade'),
-				'feedback' => post('feedback')
+				'summer_feedback' => post('summer_feedback')
 			 ], 
 			 [
 				 'id', '=', post('record_id')

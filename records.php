@@ -40,10 +40,10 @@ foreach($teams as $team) {
 		<tr>
             <th>Klasse</th>
             <th>Fag</th> 
-            <th>Gennemsnit</th>
-            <th>1. Standpunkt (vinter)</th>
-            <th>2. Standpunkt (sommer)</th>
-            <th>Feedback</th>
+            <th>1. semester</th>
+            <th>Feedback (vinter)</th>
+            <th>2. semester</th>
+            <th>Feedback (sommer)</th>
 		</tr>	
 	</thead>
 	<tbody>
@@ -64,10 +64,10 @@ foreach($teams as $team) {
             }
         }
         ?></td>
-            <td style="color: #015ab3; font-size: 30px; font-weight: 600;"><?php echo $record->avg_grade; ?></td>
             <td style="color: #015ab3; font-size: 30px; font-weight: 600;"><?php echo $record->winter_grade; ?></td>
+            <td><textarea style="color: #015ab3; font-weight: 600;" cols="50" disabled><?php echo $record->winter_feedback; ?></textarea></td>
             <td style="color: #015ab3; font-size: 30px; font-weight: 600;"><?php echo $record->summer_grade; ?></td>
-            <td><textarea style="color: #015ab3; font-weight: 600;" cols="50" disabled><?php echo $record->feedback; ?></textarea></td>
+            <td><textarea style="color: #015ab3; font-weight: 600;" cols="50" disabled><?php echo $record->summer_feedback; ?></textarea></td>
         </tr>
         <?php endforeach ?>
         <?php endif ?>

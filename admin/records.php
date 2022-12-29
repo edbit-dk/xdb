@@ -21,10 +21,10 @@
             <th>Bruger</th>
             <th>Admin</th>
             <th>Klasse</th>
-            <th>Gennemsnit</th> 
-            <th>1. Standpunkt (vinter)</th>
-            <th>2. Standpunkt (sommer)</th>
-            <th>Feedback</th>
+            <th>1. standpunkt</th>
+            <th>Feedback (vinter)</th>
+            <th>2. standpunkt</th>
+            <th>Feedback (sommer)</th>
             <th>Handlinger</th>
 		</tr>	
 	</thead>
@@ -48,10 +48,10 @@
                 <option value="<?php echo $team->id; ?>" <?php if($team->id == $record->team_id): ?> selected <?php endif ?>><?php echo $team->name; ?></option>
                 <?php endforeach ?>
             </select> </td>
-            <td><input type="text" min="-3" max="12" name="avg_grade" value="<?php echo $record->avg_grade; ?>"></td>
-            <td><input type="text" min="-3" max="12" name="winter_grade" value="<?php echo $record->winter_grade; ?>"></td>
-            <td><input type="text" min="-3" max="12" name="summer_grade" value="<?php echo $record->summer_grade; ?>"></td>
-            <td><textarea name="feedback"><?php echo $record->feedback; ?></textarea></td>
+            <td><input type="number" min="-3" max="12" name="winter_grade" value="<?php echo $record->winter_grade; ?>"></td>
+            <td><textarea name="winter_feedback"><?php echo $record->winter_feedback; ?></textarea></td>
+            <td><input type="number" min="-3" max="12" name="summer_grade" value="<?php echo $record->summer_grade; ?>"></td>
+            <td><textarea name="summer_feedback"><?php echo $record->summer_feedback; ?></textarea></td>
             <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
             <td>
                 <input class="btn btn-secondary" name="update" type="submit" value="GEM">
@@ -107,18 +107,15 @@
     </div>
     <br>
     <div class="form-group">
-    <label>Gennemsnit: <input min="-3" max="12" name="avg_grade" type="number" value="0"></label>
-    </div>
-    <br>
-    <div class="form-group">
     <label>1. standpunkt: <input min="-3" max="12" name="winter_grade" type="number" value="0"></label>
+    <label>Feedback (vinter): <textarea name="winter_feedback"></textarea></label>
     </div>
     <br>
     <div class="form-group">
     <label>2. standpunkt: <input min="-3" max="12" name="summer_grade" type="number" value="0"></label>
+    <label>Feedback (sommer): <textarea name="summer_feedback"></textarea></label>    
     </div>
     <br>
-    <label>Feedback: <textarea name="feedback"></textarea>
     <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
     <br>
     <input class="btn btn-success" name="create" type="submit" value="Opret">

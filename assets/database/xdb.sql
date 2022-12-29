@@ -33,10 +33,10 @@ CREATE TABLE `xdb_records` (
   `admin_id` int NOT NULL,
   `subject_id` int NOT NULL,
   `team_id` int NOT NULL,
-  `avg_grade` tinyint DEFAULT '0',
   `winter_grade` tinyint DEFAULT '0',
+  `winter_feedback` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
   `summer_grade` tinyint DEFAULT '0',
-  `feedback` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+  `summer_feedback` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
