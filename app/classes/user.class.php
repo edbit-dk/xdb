@@ -19,11 +19,17 @@ class User
         return self::$fields;
     }
 
-    public static function data($user_id)
+    public static function data($team_id = 0, $user_id = 0, $is_admin = 0)
     {
         global $db;
-        return $db->get(self::$table, [self::$fields[0], '=', $user_id]);
+        $table = self::$table;
+        $id = self::$fields[1];
+        $admin = self::$fields[4];
+        $team = self::$fields[5];
+        
+        return $db->query("SELECT * FROM {$table} WHERE {$team} = ? AND ({$id} = ? OR {$admin} = ?)", [$team_id, $user_id, $is_admin]);
     }
+
 
     public static function teams($team)
     {

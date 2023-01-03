@@ -14,6 +14,28 @@ switch ($view) {
 
 	case 'records' :
 		studconfirm_logged_in();
+
+		$teams = Team::list();
+		$subjects = Subject::list();
+		$records = Record::user(session('user')->id);
+
+		if(post('csrf') && post('update')) {
+
+			$status = User::update([
+				'password' => post('password')
+			], 
+			[
+				'id', '=', post('user_id')
+			]);
+
+			session('user')->password = post('password');
+
+			message('Oplysninger opdateret!', 'info');
+
+			redirect_to('/records');
+
+		}
+
 		$title="Karakterblad";	
 		$content ='records.php';
 		break;
@@ -25,10 +47,10 @@ switch ($view) {
 		  
 			if($auth) {
 			$_SESSION['user'] = $auth;
-			redirect_to('?page=records');
+			redirect_to('/records');
 			} else {
 			  message('Fejl i loginoplysninger. <br> Prøv igen eller kontakt skolens IT-vejleder.','error');
-			  redirect_to('?page=login?error=1');
+			  redirect_to('/login?error=1');
 			}
 		  
 		}

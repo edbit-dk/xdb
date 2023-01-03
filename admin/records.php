@@ -3,15 +3,27 @@
 <?php check_messages(); ?>
 <caption><h3 align="left">KARAKTERBLADE</h3></caption>
 <div style="color: #015ab3; font-size: 30px; font-weight: 600;" align="left">
-    <select name="team_id" id="teams" onchange = "reloadTeams('teams');">
-        <option value="0">ALLE</option>
-        <?php foreach($teams as $team): ?>
-        <option value="<?php echo $team->id; ?>" <?php if($team->id == $team_id): ?> selected <?php endif ?>><?php echo $team->name; ?></option>
-        <?php endforeach ?>
-    </select>
+    <form action="" method="GET">    
+        <select name="team_id" id="teams" required>
+            <option value="" selected hidden>KLASSE</option>
+            <?php foreach($teams as $team): ?>
+            <option value="<?php echo $team->id; ?>" <?php if($team->id == $team_id): ?> selected <?php endif ?>><?php echo $team->name; ?></option>
+            <?php endforeach ?>
+        </select>
+        <select name="subject_id" id="subjects" required>
+            <option value="" selected hidden>FAG</option>
+            <?php foreach($subjects as $subject): ?>
+            <option value="<?php echo $subject->id; ?>" <?php if($subject->id == $subject_id): ?> selected <?php endif ?>><?php echo $subject->name; ?></option>
+            <?php endforeach ?>
+        </select>
+        <input type="hidden" name="user_id" value="0">
+        <input type="hidden" name="admin_id" value="<?php echo session('user')->id; ?>">
+        <input class="btn btn-lg btn-primary" name="filter" type="submit" value="SØG">
+        <a class="btn btn-lg btn-secondary" href="records">Nulstil</a>
+    </form>
 </div>
 <br>
-<p style="color: #015ab3; font-size: 20px; font-weight: 600;" align="left"><a href="?page=home">TILBAGE</a></p>
+<p style="color: #015ab3; font-size: 20px; font-weight: 600;" align="left"><a href="home">TILBAGE</a></p>
 
 <div class="table-responsive">
 <table class="table table-hover table-striped">
@@ -32,7 +44,7 @@
         <?php if(!empty($records)): ?>
         <?php foreach($records as $record): ?>
          <tr style="color: #015ab3; font-size: 20px; font-weight: 600;">
-        <form action="?page=records" method="POST">
+        <form action="records" method="POST">
             <td><select name="subject_id" >
                 <?php foreach($subjects as $subject): ?>
                 <option value="<?php echo $subject->id; ?>" <?php if($subject->id == $record->subject_id): ?> selected <?php endif ?>><?php echo $subject->name; ?></option>
@@ -41,8 +53,8 @@
             <input type="hidden" name="record_id" value="<?php echo $record->id; ?>">
             <input type="hidden" name="user_id" value="<?php echo $record->user_id; ?>">
             <input type="hidden" name="admin_id" value="<?php echo session('user')->id; ?>">
-            <td><a class="btn btn-info" href="?page=users&user_id=<?php echo $record->user_id; ?>"><?php echo $record->user_id; ?></a></td>
-            <td><a class="btn btn-info" href="?page=users&user_id=<?php echo $record->admin_id; ?>"><?php echo $record->admin_id; ?></a></td>
+            <td><a class="btn btn-info" href="users?user_id=<?php echo $record->user_id; ?>"><?php echo $record->user_id; ?></a></td>
+            <td><a class="btn btn-info" href="users?user_id=<?php echo $record->admin_id; ?>"><?php echo $record->admin_id; ?></a></td>
             <td><select name="team_id" >
                 <?php foreach($teams as $team): ?>
                 <option value="<?php echo $team->id; ?>" <?php if($team->id == $record->team_id): ?> selected <?php endif ?>><?php echo $team->name; ?></option>
@@ -55,7 +67,7 @@
             <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
             <td>
                 <input class="btn btn-secondary" name="update" type="submit" value="GEM">
-                <input class="btn btn-danger" onclick="return confirm('Er du sikker?');" name="delete" type="submit" value="SLET">
+                <a class="btn btn-danger" onclick="return confirm('Er du sikker?');" href="records?delete=<?php echo $record->id; ?>">SLET</a>
             </td>
         </form>
         </tr>
@@ -66,7 +78,7 @@
 </div>
 <?php if(!empty($user_id)): ?>
 <p>Nyt KARAKTERBLAD:</p>
-<form action="?page=records" method="POST">
+<form action="records" method="POST">
     <div class="form-group">
     <label>Fag: 
     <select name="subject_id" >
@@ -126,6 +138,7 @@
 <script>
 var team = 0
 
+/*
 function reloadTeams(selectID){
      team = document.getElementById(selectID).value;
      if(team != 0) {
@@ -135,4 +148,5 @@ function reloadTeams(selectID){
      }
 
 }
+*/
 </script>

@@ -11,7 +11,7 @@ require_once("bootstrap.php");
     <h1 class="h3 mb-3 fw-normal"><span style="color: #015ab3; font-size: 30px; font-weight: 600;">X</span>DB</h1>
     <?php check_messages(); ?>
     <h5>Vejle Friskoles Eksamensdatabase</h5><br>
-    <a class="w-100 btn btn-lg btn-primary" href="?page=records">Elev</a>
+    <a class="w-100 btn btn-lg btn-primary" href="records">Elev</a>
     <br><br>
     <a class="w-100 btn btn-lg btn-primary" href="admin">Medarbejder</a>
 </main>

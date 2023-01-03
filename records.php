@@ -1,29 +1,4 @@
-<?php
-
-require 'header.php';
-
-$teams = Team::list();
-$subjects = Subject::list();
-$records = Record::user(session('user')->id);
-
-if(post('csrf') && post('update')) {
-    
-    $status = User::update([
-         'password' => post('password')
-     ], 
-     [
-         'id', '=', post('user_id')
-     ]);
-
-     session('user')->password = post('password');
-
-     message('Oplysninger opdateret!', 'info');
-
-     redirect_to('?page=records');
-
- }
-
-?>
+<?php require 'header.php'; ?>
 <div class="container" style="margin-top: 50px"> 
 <?php check_messages(); ?>
 <caption><h3>KARAKTERBLAD FOR: <span style="color: #015ab3; font-weight: 600;"><?php echo session('user')->fullname; ?> (<?php echo session('user')->username; ?>) - <?php 

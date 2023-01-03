@@ -20,10 +20,10 @@ switch ($view) {
 		  
 			if($auth) {
 			$_SESSION['user'] = $auth;
-			redirect_to('/admin/?page=home');
+			redirect_to('/admin/home');
 			} else {
 			  message('Fejl i loginoplysninger. <br> Prøv igen eller kontakt skolens IT-vejleder.','error');
-			  redirect_to('/admin/?page=login?error=1');
+			  redirect_to('/admin/login?error=1');
 			}
 		  
 		}
@@ -33,6 +33,12 @@ switch ($view) {
 
 	case 'users':
 		confirm_logged_in();
+
+		$users = '';
+		$admin = '';
+		$team_id  = '';
+		$user_id = '';
+		$teams = Team::list();
 
 		if (post('csrf') && post('create')) {
 
@@ -44,7 +50,7 @@ switch ($view) {
 				'admin' => post('admin')
 			]);
 			
-			redirect_to('/admin?page=users&team_id=' . post('team_id'));
+			redirect_to('/admin/users?team_id=' . post('team_id'));
 			message("Bruger oprettet!", 'info');
 		}
 		
@@ -53,30 +59,23 @@ switch ($view) {
 		   $status = User::update([
 				'team_id' => post('team_id'),
 				'fullname' => post('fullname'),
-				'password' => post('password')
+				'password' => post('password'),
+				'admin' => post('admin')
 			], 
 			[
 				'id', '=', post('user_id')
 			]);
 		
-			redirect_to('/admin?page=users&team_id=' . post('team_id'));
+			redirect_to('/admin/users?team_id=' . post('team_id'));
 			message('Oplysninger opdateret!', 'info');
 		}
 		
-		$team_id  = '';
-		$user_id = '';
-		$teams = Team::list();
-		
-		if (isset($_GET['user_id'])) {
+		if (isset($_GET['filter'])) {
 			$user_id = $_GET['user_id'];
-			$users = User::data($user_id)->results();
-		
-		} elseif(isset($_GET['team_id'])) {
 			$team_id = $_GET['team_id'];
-			$users = User::teams($team_id);
+			$admin = $_GET['admin'];
+			$users = User::data($team_id, $user_id, $admin)->results();
 		
-		} else {
-			$users = User::list();
 		}
 
 		$title="Brugere";	
@@ -85,6 +84,15 @@ switch ($view) {
 
 	case 'records':
 		confirm_logged_in();
+
+		$records = '';
+		$admins = User::admins();
+		$teams = Team::list();
+		$subjects = Subject::list();
+
+		$team_id = 0;
+		$subject_id = 0;
+		$user_id = 0;
 
 		if(post('csrf') && post('create')) {
 
@@ -99,7 +107,7 @@ switch ($view) {
 				'summer_feedback' => post('summer_feedback')
 			]);
 		
-			redirect_to('/admin?page=records&user_id=' . post('user_id'));
+			redirect_to('/admin/records?user_id=' . post('user_id'));
 			message('Karakterblad oprettet!', 'info');
 		}
 		
@@ -118,27 +126,22 @@ switch ($view) {
 				 'id', '=', post('record_id')
 			 ]);
 		 
-			 redirect_to('/admin?page=records&user_id=' . post('user_id'));
+			 redirect_to('/admin/records?user_id=' . post('user_id'));
 			 message('Karakterblad opdateret!', 'info');
 		 }
-		
-		$team_id = '';
-		$user_id = '';
-		$admins = User::admins();
-		$teams = Team::list();
-		$subjects = Subject::list();
-		
-		if (isset($_GET['user_id'])) {
-			$user_id = $_GET['user_id'];
-			$records = Record::user($user_id);
-			$user = User::data($user_id)->first();
-		
-		} elseif(isset($_GET['team_id'])) {
+
+		if (isset($_GET['filter'])) {
+			$records = Record::data(get('user_id'),get('admin_id'), get('subject_id'), get('team_id'))->results();
+
 			$team_id = $_GET['team_id'];
-			$records = Record::teams($team_id);
-		
-		}else {
-			$records = Record::list();
+			$subject_id = $_GET['subject_id'];
+			$user_id = $_GET['user_id'];
+
+		} elseif(isset($_GET['user_id'])) {
+			$user_id = $_GET['user_id'];
+			$team_id = $_GET['team_id'];
+			$records = Record::data($user_id)->results();
+			$user = User::data($team_id, $user_id)->first();
 		}
 		
 	    $title="Karakterblad";	

@@ -111,6 +111,14 @@ function post($name) {
 	}
 }
 
+function get($name) {
+	if(isset($_GET[$name])) {
+		return trim($_GET[$name]);
+	} else {
+		return false;
+	}
+}
+
 function csrf_token($name = 'csrf') {
 	return $_SESSION[$name] = uniqid();
 }

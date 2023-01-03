@@ -28,10 +28,28 @@ class Record
         return $db->get(self::$table)->results();
     }
 
-    public static function teams($team_id)
+    public static function data($user_id = 0, $admin_id = 0, $subject_id = 0, $team_id = 0)
+    {
+        global $db;
+        $table = self::$table;
+        $user = self::$fields[1];
+        $admin = self::$fields[2];
+        $subject = self::$fields[3];
+        $team = self::$fields[4];
+        
+        return $db->query("SELECT * FROM {$table} WHERE {$user} = ? OR {$admin} = ? AND ({$subject} = ? AND {$team} = ?)", [$user_id, $admin_id, $subject_id, $team_id]);
+    }
+
+    public static function team($team_id)
     {
         global $db;
         return $db->get(self::$table, [self::$fields[4], '=', $team_id])->results();
+    }
+
+    public static function subject($subject_id)
+    {
+        global $db;
+        return $db->get(self::$table, [self::$fields[3], '=', $subject_id])->results();
     }
 
     public static function create(array $data)
