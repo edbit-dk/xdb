@@ -1,7 +1,7 @@
 <?php require 'header.php'; ?>
 <div class="container" style="margin-top: 90px"> 
 <?php check_messages(); ?>
-<caption><h3 align="left">BRUGERE</h3></caption>
+<caption><h3 align="left">BRUGERE (<?php echo $user_count; ?>)</h3></caption>
 <div style="color: #015ab3; font-size: 30px; font-weight: 600;" align="left">
     <form action="" method="GET">    
         <select name="team_id" id="teams" required>
@@ -12,11 +12,11 @@
         </select>
         <select name="admin" id="admins" required>
             <option value="" selected hidden>ADMIN?</option>
-            <option value="0" <?php if($admin == '0'): ?> selected <?php endif ?>>NEJ</option>
+            <option value="0" <?php if($admin == '0'): ?> selected <?php endif ?>>Nej</option>
             <option value="1" <?php if($admin == 1): ?> selected <?php endif ?>>Ja</option>
         </select>
         <input type="hidden" name="user_id" value="0">
-        <input class="btn btn-lg btn-primary" name="filter" type="submit" value="SØG">
+        <input class="btn btn-lg btn-primary" name="filter" type="submit" value="VIS">
         <a class="btn btn-lg btn-secondary" href="users">Nulstil</a>
     </form>
 </div>
@@ -38,6 +38,10 @@
 	<tbody>
         <?php if(!empty($users)): ?>
         <?php foreach($users as $user): ?>
+        <?php 
+            $record_count = 0;
+            $record_count = Record::user($user->id)->row_count();
+        ?>
         <tr style="color: #015ab3; font-size: 20px; font-weight: 600;">
         <form action="?page=users" method="POST">
             <td><select name="team_id" >
@@ -55,7 +59,7 @@
                 <input class="btn btn-secondary" name="update" type="submit" value="GEM">
                 <a class="btn btn-danger" onclick="return confirm('Er du sikker?');" href="users?delete=<?php echo $user->id; ?>">SLET</a>
             </td>
-            <td><a class="btn btn-primary"  href="records?team_id=<?php echo $user->team_id ?>&user_id=<?php echo $user->id; ?>&filter=SØG">VIS</a></td>
+            <td><a class="btn btn-primary"  href="records?team_id=<?php echo $user->team_id ?>&user_id=<?php echo $user->id; ?>&subject_id=0&filter=SØG">(<?php echo $record_count; ?>) VIS</a></td>
         </form>
         </tr>
         <?php endforeach ?>

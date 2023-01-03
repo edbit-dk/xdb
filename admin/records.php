@@ -1,7 +1,7 @@
 <?php require 'header.php'; ?>
 <div class="container" style="margin-top: 90px"> 
 <?php check_messages(); ?>
-<caption><h3 align="left">KARAKTERBLADE (<?php echo $count; ?>)</h3></caption>
+<caption><h3 align="left">KARAKTERBLADE (<?php echo $record_count; ?>)</h3></caption>
 <div style="color: #015ab3; font-size: 30px; font-weight: 600;" align="left">
     <form action="" method="GET">    
         <select name="team_id" id="teams" required>
@@ -16,9 +16,9 @@
             <option value="<?php echo $subject->id; ?>" <?php if($subject->id == $subject_id): ?> selected <?php endif ?>><?php echo $subject->name; ?></option>
             <?php endforeach ?>
         </select>
-        <input type="hidden" name="user_id" value="0">
+        <input type="hidden" name="user_id" value="<?php if(isset($user_id)) {echo $user_id; } ?>">
         <input type="hidden" name="admin_id" value="<?php echo session('user')->id; ?>">
-        <input class="btn btn-lg btn-primary" name="filter" type="submit" value="SØG">
+        <input class="btn btn-lg btn-primary" name="filter" type="submit" value="VIS">
         <a class="btn btn-lg btn-secondary" href="records">Nulstil</a>
     </form>
 </div>
@@ -44,7 +44,7 @@
         <?php if(!empty($records)): ?>
         <?php foreach($records as $record): ?>
          <tr style="color: #015ab3; font-size: 20px; font-weight: 600;">
-        <form action="records" method="POST">
+        <form action="<?php echo current_url() ?>" method="POST">
             <td><select name="subject_id" >
                 <?php foreach($subjects as $subject): ?>
                 <option value="<?php echo $subject->id; ?>" <?php if($subject->id == $record->subject_id): ?> selected <?php endif ?>><?php echo $subject->name; ?></option>

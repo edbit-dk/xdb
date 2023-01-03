@@ -25,7 +25,7 @@ class Record
     public static function list()
     {
         global $db;
-        return $db->get(self::$table)->results();
+        return $db->get(self::$table);
     }
 
     public static function data($user_id = 0, $admin_id = 0, $subject_id = 0, $team_id = 0)
@@ -85,9 +85,8 @@ class Record
         global $db;
         $table = self::$table;
         $user = self::$fields[1];
-        $admin = self::$fields[2];
         
-        return $db->query("SELECT * FROM {$table} WHERE {$user} = ? OR {$admin} = ?", [$user_id, $user_id])->results();
+        return $db->query("SELECT * FROM {$table} WHERE {$user} = ?", [$user_id]);
        
     }
 }
