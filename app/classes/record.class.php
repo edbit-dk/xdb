@@ -82,7 +82,7 @@ class Record
     {
         global $db;
 
-        return $db->get(self::$table, [self::$fields[2], '=', $user_id])->row_count();
+        return $db->get(self::$table, [self::$fields[1], '=', $user_id])->row_count();
        
     }
 

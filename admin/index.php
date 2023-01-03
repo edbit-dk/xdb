@@ -45,6 +45,7 @@ switch ($view) {
 
 			User::create([
 				'fullname' => post('fullname'),
+				'profile' => post('profile'),
 				'username' => post('username'),
 				'password' => post('password'),
 				'team_id' => post('team_id'),
@@ -59,6 +60,7 @@ switch ($view) {
 			
 		   $status = User::update([
 				'team_id' => post('team_id'),
+				'profile' => post('profile'),
 				'fullname' => post('fullname'),
 				'password' => post('password'),
 				'admin' => post('admin')
@@ -67,7 +69,6 @@ switch ($view) {
 				'id', '=', post('user_id')
 			]);
 		
-			redirect_to('/admin/users?team_id=' . post('team_id'));
 			message('Oplysninger opdateret!', 'info');
 		}
 		

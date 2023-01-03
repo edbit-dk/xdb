@@ -21,6 +21,7 @@ $teams = Team::list();
     <input type="text" name="fullname" placeholder="Navn" required>
     <input type="text" name="username" placeholder="Brugernavn" required>
     <input type="text" name="password" placeholder="Adgangskode">
+    <textarea name="profile" cols="22"></textarea>
     <br><br>
     <select name="team_id" required>
         <option value="" selected hidden>Team</option>

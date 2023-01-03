@@ -30,6 +30,7 @@
             <th>Klasse</th>
             <th>Admin?</th>
             <th>Navn</th>
+            <th>Profil</th>
             <th>Brugernavn</th>
             <th>Adgangskode</th>
             <th>Handlinger</th>
@@ -41,17 +42,18 @@
         <?php foreach($users as $user): ?>
         <?php 
             $record_count = 0;
-            $record_count = Record::user($user->id)->row_count();
+            $record_count = Record::count($user->id);
         ?>
         <tr style="color: #015ab3; font-size: 20px; font-weight: 600;">
         <form action="<?php echo current_url() ?>" method="POST">
-            <td><select name="team_id" >
+            <td><select name="team_id">
                 <?php foreach($teams as $team): ?>
                 <option value="<?php echo $team->id; ?>" <?php if($team->id == $user->team_id): ?> selected <?php endif ?>><?php echo $team->name; ?></option>
                 <?php endforeach ?>
             </select> </td>
             <td><input type="number" min="0" max="1" name="admin" value="<?php echo $user->admin ?>"></td>
             <td><input type="text" name="fullname" value="<?php echo $user->fullname ?>"></td>
+            <td><textarea name="profile"><?php echo $user->profile ?></textarea></td>
             <td><?php echo $user->username; ?></td>
             <td><input type="text" name="password" value="<?php echo $user->password; ?>"></td>
             <input type="hidden" name="user_id" value="<?php echo $user->id; ?>">
