@@ -15,9 +15,22 @@ switch ($view) {
 	case 'records' :
 		studconfirm_logged_in();
 
+		$records = '';
+		$team_id = -1;
+		$subject_id = -1;
+		$user_id = session('user')->id;
 		$teams = Team::list();
 		$subjects = Subject::list();
-		$records = Record::user(session('user')->id);
+
+		if(isset($_GET['filter'])) {
+			$team_id = $_GET['team_id'];
+			$subject_id = $_GET['subject_id'];
+			$records = Record::user($user_id, $team_id, $subject_id)->results();
+
+		} else {
+			$records = Record::list($user_id)->results();
+		}
+
 
 		if(post('csrf') && post('update')) {
 

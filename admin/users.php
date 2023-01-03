@@ -3,7 +3,7 @@
 <?php check_messages(); ?>
 <caption><h3 align="left">BRUGERE (<?php echo $user_count; ?>)</h3></caption>
 <div style="color: #015ab3; font-size: 30px; font-weight: 600;" align="left">
-    <form action="" method="GET">    
+    <form action="<?php echo current_url() ?>" method="GET">    
         <select name="team_id" id="teams" required>
             <option value="" selected hidden>KLASSE</option>
             <?php foreach($teams as $team): ?>
@@ -16,7 +16,8 @@
             <option value="1" <?php if($admin == 1): ?> selected <?php endif ?>>Ja</option>
         </select>
         <input type="hidden" name="user_id" value="0">
-        <input class="btn btn-lg btn-primary" name="filter" type="submit" value="VIS">
+        <input type="hidden" name="filter" value="ALLE">
+        <input class="btn btn-lg btn-primary" name="" type="submit" value="SØG">
         <a class="btn btn-lg btn-secondary" href="users">Nulstil</a>
     </form>
 </div>
@@ -43,7 +44,7 @@
             $record_count = Record::user($user->id)->row_count();
         ?>
         <tr style="color: #015ab3; font-size: 20px; font-weight: 600;">
-        <form action="?page=users" method="POST">
+        <form action="<?php echo current_url() ?>" method="POST">
             <td><select name="team_id" >
                 <?php foreach($teams as $team): ?>
                 <option value="<?php echo $team->id; ?>" <?php if($team->id == $user->team_id): ?> selected <?php endif ?>><?php echo $team->name; ?></option>
@@ -59,7 +60,7 @@
                 <input class="btn btn-secondary" name="update" type="submit" value="GEM">
                 <a class="btn btn-danger" onclick="return confirm('Er du sikker?');" href="users?delete=<?php echo $user->id; ?>">SLET</a>
             </td>
-            <td><a class="btn btn-primary"  href="records?team_id=<?php echo $user->team_id ?>&user_id=<?php echo $user->id; ?>&subject_id=0&filter=SØG">(<?php echo $record_count; ?>) VIS</a></td>
+            <td><a class="btn btn-primary"  href="records?team_id=<?php echo $user->team_id ?>&user_id=<?php echo $user->id; ?>&subject_id=0&filter=BRUGER">(<?php echo $record_count; ?>) VIS</a></td>
         </form>
         </tr>
         <?php endforeach ?>

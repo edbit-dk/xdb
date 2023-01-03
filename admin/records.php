@@ -1,9 +1,13 @@
 <?php require 'header.php'; ?>
 <div class="container" style="margin-top: 90px"> 
 <?php check_messages(); ?>
-<caption><h3 align="left">KARAKTERBLADE (<?php echo $record_count; ?>)</h3></caption>
+<caption><h3 align="left">KARAKTERBLADE (<?php echo $record_count; ?>)
+<?php if(!empty($user)):?>
+: "<?php echo $user->fullname; ?> (<?php echo $user->username; ?>)"
+<?php endif ?>
+</h3></caption>
 <div style="color: #015ab3; font-size: 30px; font-weight: 600;" align="left">
-    <form action="" method="GET">    
+    <form action="<?php echo current_url() ?>" method="GET">    
         <select name="team_id" id="teams" required>
             <option value="" selected hidden>KLASSE</option>
             <?php foreach($teams as $team): ?>
@@ -18,7 +22,8 @@
         </select>
         <input type="hidden" name="user_id" value="<?php if(isset($user_id)) {echo $user_id; } ?>">
         <input type="hidden" name="admin_id" value="<?php echo session('user')->id; ?>">
-        <input class="btn btn-lg btn-primary" name="filter" type="submit" value="VIS">
+        <input type="hidden" name="filter" value="ALLE">
+        <input class="btn btn-lg btn-primary" name="" type="submit" value="SØG">
         <a class="btn btn-lg btn-secondary" href="records">Nulstil</a>
     </form>
 </div>
@@ -53,8 +58,8 @@
             <input type="hidden" name="record_id" value="<?php echo $record->id; ?>">
             <input type="hidden" name="user_id" value="<?php echo $record->user_id; ?>">
             <input type="hidden" name="admin_id" value="<?php echo session('user')->id; ?>">
-            <td><a class="btn btn-info" href="users?user_id=<?php echo $record->user_id; ?>&team_id=<?php echo $record->team_id; ?>&admin=0&filter=SØG"><?php echo $record->user_id; ?></a></td>
-            <td><a class="btn btn-info" href="users?user_id=<?php echo $record->admin_id; ?>&team_id=<?php echo $record->team_id; ?>&admin=1&filter=SØG"><?php echo $record->admin_id; ?></a></td>
+            <td><a class="btn btn-info" href="users?user_id=<?php echo $record->user_id; ?>&team_id=<?php echo $record->team_id; ?>&admin=0&filter=BRUGER"><?php echo $record->user_id; ?></a></td>
+            <td><a class="btn btn-info" href="users?user_id=<?php echo $record->admin_id; ?>&team_id=<?php echo $record->team_id; ?>&admin=1&filter=BRUGER"><?php echo $record->admin_id; ?></a></td>
             <td><select name="team_id" >
                 <?php foreach($teams as $team): ?>
                 <option value="<?php echo $team->id; ?>" <?php if($team->id == $record->team_id): ?> selected <?php endif ?>><?php echo $team->name; ?></option>
@@ -76,9 +81,9 @@
     </tbody>	
 </table>
 </div>
-<?php if(!empty($user_id)): ?>
-<p>Nyt KARAKTERBLAD:</p>
-<form action="records" method="POST">
+<?php if(!empty($user)): ?>
+<p style="color: #015ab3; font-size: 20px; font-weight: 600;">Nyt KARAKTERBLAD:</p>
+<form action="<?php echo current_url(); ?>" method="POST">
     <div class="form-group">
     <label>Fag: 
     <select name="subject_id" >
@@ -108,7 +113,7 @@
     <br>
     <div class="form-group">
     <label>Admin: 
-    <select name="admin_id" disabled>
+    <select name="admin_id">
         <option>Vælg Admin</option>
         <?php foreach($admins as $admin): ?>
         <option value="<?php echo $admin->id; ?>" <?php if($admin->id == session('user')->id): ?>selected<?php endif ?>><?php echo $admin->fullname; ?></option>

@@ -51,7 +51,7 @@ switch ($view) {
 				'admin' => post('admin')
 			]);
 			
-			redirect_to('/admin/users?team_id=' . post('team_id'));
+			redirect_to('/admin/home');
 			message("Bruger oprettet!", 'info');
 		}
 		
@@ -71,12 +71,21 @@ switch ($view) {
 			message('Oplysninger opdateret!', 'info');
 		}
 		
-		if (isset($_GET['filter'])) {
+		if (isset($_GET['filter']) && get('filter') == 'ALLE') {
 			$user_id = $_GET['user_id'];
 			$team_id = $_GET['team_id'];
 			$admin = $_GET['admin'];
 
 			$data = User::data($team_id, $user_id, $admin);
+			$user_count = $data->row_count();
+			$users = $data->results();
+
+		} elseif(isset($_GET['filter']) && get('filter') == 'BRUGER') {
+			$user_id = $_GET['user_id'];
+			$team_id = $_GET['team_id'];
+			$admin = $_GET['admin'];
+
+			$data = User::records($user_id);
 			$user_count = $data->row_count();
 			$users = $data->results();
 		}

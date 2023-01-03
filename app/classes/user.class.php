@@ -37,6 +37,12 @@ class User
         return $db->get(self::$table, [self::$fields[5], '=', $team])->results();
     }
 
+    public static function records($user_id)
+    {
+        global $db;
+        return $db->get(self::$table, [self::$fields[0], '=', $user_id]);
+    }
+
     public static function admins()
     {
         global $db;
