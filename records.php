@@ -1,13 +1,7 @@
 <?php require 'header.php'; ?>
-<div class="container" style="margin-top: 50px"> 
+<div class="container" style="margin-top: 50px">
 <?php check_messages(); ?>
-<caption><h3>KARAKTERBLADE FOR: <span style="color: #015ab3; font-weight: 600;"><?php echo session('user')->fullname; ?> (<?php echo session('user')->username; ?>) - <?php 
-foreach($teams as $team) {
-    if($team->id == session('user')->team_id) {
-        echo $team->name;
-    }
-}
-?></span></h3></caption>
+<caption><h3>KARAKTERBLADE:</h3></caption>
 <div style="color: #015ab3; font-size: 30px; font-weight: 600;" align="center">
     <form action="<?php echo current_url() ?>" method="GET">    
         <select name="team_id" id="teams" required>
@@ -69,5 +63,4 @@ foreach($teams as $team) {
 </table>
 </div>
 <br>
-
 </div><!--End of container-->
