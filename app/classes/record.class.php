@@ -72,6 +72,14 @@ class Record
        
     }
 
+    public static function count($user_id)
+    {
+        global $db;
+
+        return $db->get(self::$table, [self::$fields[2], '=', $user_id])->row_count();
+       
+    }
+
     public static function user($user_id)
     {
         global $db;

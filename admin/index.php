@@ -93,6 +93,7 @@ switch ($view) {
 		$team_id = 0;
 		$subject_id = 0;
 		$user_id = 0;
+		$count = 0;
 
 		if(post('csrf') && post('create')) {
 
@@ -131,18 +132,17 @@ switch ($view) {
 		 }
 
 		if (isset($_GET['filter'])) {
-			$records = Record::data(get('user_id'),get('admin_id'), get('subject_id'), get('team_id'))->results();
+
+			$data = Record::data(get('user_id'), get('admin_id'), get('subject_id'), get('team_id'));
+			$records = $data->results();
+			$count = $data->row_count();
 
 			$team_id = $_GET['team_id'];
 			$subject_id = $_GET['subject_id'];
 			$user_id = $_GET['user_id'];
-
-		} elseif(isset($_GET['user_id'])) {
-			$user_id = $_GET['user_id'];
-			$team_id = $_GET['team_id'];
-			$records = Record::data($user_id)->results();
 			$user = User::data($team_id, $user_id)->first();
-		}
+
+		} 
 		
 	    $title="Karakterblad";	
 		$content ='records.php';

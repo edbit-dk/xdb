@@ -55,7 +55,7 @@
                 <input class="btn btn-secondary" name="update" type="submit" value="GEM">
                 <a class="btn btn-danger" onclick="return confirm('Er du sikker?');" href="users?delete=<?php echo $user->id; ?>">SLET</a>
             </td>
-            <td><a class="btn btn-primary"  href="records?team_id=<?php echo $user->team_id ?>&user_id=<?php echo $user->id; ?>">VIS</a></td>
+            <td><a class="btn btn-primary"  href="records?team_id=<?php echo $user->team_id ?>&user_id=<?php echo $user->id; ?>&filter=SØG">VIS</a></td>
         </form>
         </tr>
         <?php endforeach ?>
@@ -64,17 +64,3 @@
 </table>
 </div>
 </div><!--End of container-->
-
-<script>
-var team = 0
-
-function reloadTeams(selectID){
-     team = document.getElementById(selectID).value;
-     if(team != 0) {
-        location.href = '?page=users&team_id=' + team;
-     } else {
-        location.href = '?page=users';
-     }
-
-}
-</script>

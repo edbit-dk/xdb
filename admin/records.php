@@ -1,7 +1,7 @@
 <?php require 'header.php'; ?>
 <div class="container" style="margin-top: 90px"> 
 <?php check_messages(); ?>
-<caption><h3 align="left">KARAKTERBLADE</h3></caption>
+<caption><h3 align="left">KARAKTERBLADE (<?php echo $count; ?>)</h3></caption>
 <div style="color: #015ab3; font-size: 30px; font-weight: 600;" align="left">
     <form action="" method="GET">    
         <select name="team_id" id="teams" required>
@@ -53,8 +53,8 @@
             <input type="hidden" name="record_id" value="<?php echo $record->id; ?>">
             <input type="hidden" name="user_id" value="<?php echo $record->user_id; ?>">
             <input type="hidden" name="admin_id" value="<?php echo session('user')->id; ?>">
-            <td><a class="btn btn-info" href="users?user_id=<?php echo $record->user_id; ?>"><?php echo $record->user_id; ?></a></td>
-            <td><a class="btn btn-info" href="users?user_id=<?php echo $record->admin_id; ?>"><?php echo $record->admin_id; ?></a></td>
+            <td><a class="btn btn-info" href="users?user_id=<?php echo $record->user_id; ?>&team_id=<?php echo $record->team_id; ?>&admin=0&filter=SØG"><?php echo $record->user_id; ?></a></td>
+            <td><a class="btn btn-info" href="users?user_id=<?php echo $record->admin_id; ?>&team_id=<?php echo $record->team_id; ?>&admin=1&filter=SØG"><?php echo $record->admin_id; ?></a></td>
             <td><select name="team_id" >
                 <?php foreach($teams as $team): ?>
                 <option value="<?php echo $team->id; ?>" <?php if($team->id == $record->team_id): ?> selected <?php endif ?>><?php echo $team->name; ?></option>
