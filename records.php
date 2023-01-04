@@ -32,9 +32,9 @@
         }
         ?></td>
             <td style="color: #015ab3; font-size: 30px; font-weight: 600;"><?php echo $record->winter_grade; ?></td>
-            <td><textarea style="color: #015ab3; font-weight: 600;" cols="40" disabled><?php echo $record->winter_feedback; ?></textarea></td>
+            <td><textarea style="color: #015ab3; font-weight: 600;" rows="3" cols="40" disabled><?php echo $record->winter_feedback; ?></textarea></td>
             <td style="color: #015ab3; font-size: 30px; font-weight: 600;"><?php echo $record->summer_grade; ?></td>
-            <td><textarea style="color: #015ab3; font-weight: 600;" cols="40" disabled><?php echo $record->summer_feedback; ?></textarea></td>
+            <td><textarea style="color: #015ab3; font-weight: 600;" rows="3" cols="40" disabled><?php echo $record->summer_feedback; ?></textarea></td>
         </tr>
         <?php endforeach ?>
         <?php endif ?>
