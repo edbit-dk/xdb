@@ -3,7 +3,7 @@
 <?php check_messages(); ?>
 <caption><h3 align="left">KARAKTERBLADE (<?php echo $record_count; ?>)
 <?php if(!empty($user)):?>
-: "<?php echo $user->fullname; ?> (<?php echo $user->username; ?>)"
+: "<?php echo $user->first()->fullname; ?> (<?php echo $user->first()->username; ?>)"
 <?php endif ?>
 </h3></caption>
 <div style="color: #015ab3; font-size: 30px; font-weight: 600;" align="left">

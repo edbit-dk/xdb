@@ -86,7 +86,7 @@ switch ($view) {
 			$team_id = $_GET['team_id'];
 			$admin = $_GET['admin'];
 
-			$data = User::records($user_id);
+			$data = User::record($user_id);
 			$user_count = $data->row_count();
 			$users = $data->results();
 		}
@@ -98,6 +98,7 @@ switch ($view) {
 	case 'records':
 		confirm_logged_in();
 
+		$user = '';
 		$records = '';
 		$admins = User::admins();
 		$teams = Team::list();
@@ -143,18 +144,29 @@ switch ($view) {
 			 message('Karakterblad opdateret!', 'info');
 		 }
 
-		if (isset($_GET['filter'])) {
+		if (isset($_GET['filter']) && get('filter') == 'ALLE')  {
+
+			$team_id = $_GET['team_id'];
+			$subject_id = $_GET['subject_id'];
+			$user_id = $_GET['user_id'];
 
 			$data = Record::data(get('user_id'), get('admin_id'), get('subject_id'), get('team_id'));
 			$records = $data->results();
 			$record_count = $data->row_count();
 
+			$user = User::team($team_id);
+
+		} if (isset($_GET['filter']) && get('filter') == 'BRUGER')  {
 			$team_id = $_GET['team_id'];
 			$subject_id = $_GET['subject_id'];
 			$user_id = $_GET['user_id'];
-			$user = User::data($team_id, $user_id)->first();
 
-		} 
+			$data = Record::data(get('user_id'), get('admin_id'), get('subject_id'), get('team_id'));
+			$records = $data->results();
+			$record_count = $data->row_count();
+
+			$user = User::record($user_id);
+		}
 		
 	    $title="Karakterblad";	
 		$content ='records.php';

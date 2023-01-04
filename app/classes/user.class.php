@@ -23,7 +23,7 @@ class User
     {
         global $db;
         $table = self::$table;
-        $id = self::$fields[1];
+        $id = self::$fields[0];
         $admin = self::$fields[4];
         $team = self::$fields[5];
         
@@ -31,13 +31,13 @@ class User
     }
 
 
-    public static function teams($team)
+    public static function team($team)
     {
         global $db;
         return $db->get(self::$table, [self::$fields[5], '=', $team])->results();
     }
 
-    public static function records($user_id)
+    public static function record($user_id)
     {
         global $db;
         return $db->get(self::$table, [self::$fields[0], '=', $user_id]);
