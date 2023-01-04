@@ -34,7 +34,7 @@ class User
     public static function team($team)
     {
         global $db;
-        return $db->get(self::$table, [self::$fields[5], '=', $team])->results();
+        return $db->get(self::$table, [self::$fields[5], '=', $team]);
     }
 
     public static function record($user_id)

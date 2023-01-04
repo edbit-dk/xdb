@@ -2,7 +2,7 @@
 <div class="container" style="margin-top: 90px"> 
 <?php check_messages(); ?>
 <caption><h3 align="left">KARAKTERBLADE (<?php echo $record_count; ?>)
-<?php if(!empty($user)):?>
+<?php if($user_count == 1):?>
 : "<?php echo $user->first()->fullname; ?> (<?php echo $user->first()->username; ?>)"
 <?php endif ?>
 </h3></caption>
@@ -81,7 +81,7 @@
     </tbody>	
 </table>
 </div>
-<?php if(!empty($user)): ?>
+<?php if($user_count == 1):?>
 <p style="color: #015ab3; font-size: 20px; font-weight: 600;">Nyt KARAKTERBLAD:</p>
 <form action="<?php echo current_url(); ?>" method="POST">
     <div class="form-group">
@@ -96,7 +96,7 @@
     </div>
     <br>
     <div class="form-group">
-    <label>Bruger: <input disabled type="text" name="user_id" value="<?php echo $user->fullname; ?> (<?php echo $user->username; ?>)"></label>
+    <label>Bruger: <input disabled type="text" name="user_id" value="<?php echo $user->first()->fullname; ?> (<?php echo $user->first()->username; ?>)"></label>
     <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
     </div>
     <br>
@@ -105,7 +105,7 @@
     <select name="team_id" >
         <option>Vælg Team</option>
         <?php foreach($teams as $team): ?>
-        <option value="<?php echo $team->id; ?>" <?php if($team->id == $user->team_id): ?> selected <?php endif ?>><?php echo $team->name; ?></option>
+        <option value="<?php echo $team->id; ?>" <?php if($team->id == $user->first()->team_id): ?> selected <?php endif ?>><?php echo $team->name; ?></option>
         <?php endforeach ?>
     </select> 
     </label>

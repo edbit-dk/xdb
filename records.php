@@ -28,9 +28,9 @@
 		<tr>
             <th>Klasse</th>
             <th>Fag</th> 
-            <th>1. semester</th>
+            <th>1. standpunkt</th>
             <th>Feedback (vinter)</th>
-            <th>2. semester</th>
+            <th>2. standpunkt</th>
             <th>Feedback (sommer)</th>
 		</tr>	
 	</thead>
