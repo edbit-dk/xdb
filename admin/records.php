@@ -37,7 +37,7 @@
             <th>Fag</th>
             <th>Bruger</th>
             <th>Admin</th>
-            <th>Klasse</th>
+            <th>Hold</th>
             <th>1. semester</th>
             <th>Feedback (1. semester)</th>
             <th>2. semester</th>
