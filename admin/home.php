@@ -14,7 +14,7 @@ $teams = Team::list();
 <br>
     <a class="btn btn-lg btn-primary" href="users">BRUGERE</a>
     <br><br>
-    <a class="btn btn-lg btn-primary" href="records">KARAKTERBLADE</a>
+    <a class="btn btn-lg btn-primary" href="records">MEDDELSER</a>
     <br><br>
     <h3>NY BRUGER:</h3>
     <form action="users" method="POST">
