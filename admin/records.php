@@ -38,9 +38,9 @@
             <th>Bruger</th>
             <th>Admin</th>
             <th>Klasse</th>
-            <th>1. mål</th>
+            <th>1. semester</th>
             <th>Feedback (vinter)</th>
-            <th>2. mål</th>
+            <th>2. semester</th>
             <th>Feedback (sommer)</th>
             <th>Handlinger</th>
 		</tr>	
@@ -124,12 +124,12 @@
     </div>
     <br>
     <div class="form-group">
-    <label>1. mål: <input min="0" max="100" name="winter_grade" type="number" value="0">%</label>
+    <label>1. semester: <input min="0" max="100" name="winter_grade" type="number" value="0">%</label>
     <label>Feedback (vinter): <textarea name="winter_feedback"></textarea></label>
     </div>
     <br>
     <div class="form-group">
-    <label>2. mål: <input min="0" max="100" name="summer_grade" type="number" value="0">%</label>
+    <label>2. semester: <input min="0" max="100" name="summer_grade" type="number" value="0">%</label>
     <label>Feedback (sommer): <textarea name="summer_feedback"></textarea></label>    
     </div>
     <br>
