@@ -1,7 +1,7 @@
 <?php require 'header.php'; ?>
 <div class="container" style="margin-top: 90px"> 
 <?php check_messages(); ?>
-<caption><h3 align="left">FEEDBACK (<?php echo $record_count; ?>)
+<caption><h3 align="left">Meddelser (<?php echo $record_count; ?>)
 <?php if($user_count == 1):?>
 : "<?php echo $user->first()->fullname; ?> (<?php echo $user->first()->username; ?>)"
 <?php endif ?>
@@ -9,7 +9,7 @@
 <div style="color: #015ab3; font-size: 30px; font-weight: 600;" align="left">
     <form action="<?php echo current_url() ?>" method="GET">    
         <select name="team_id" id="teams" required>
-            <option value="" selected hidden>KLASSE</option>
+            <option value="" selected hidden>HOLD</option>
             <?php foreach($teams as $team): ?>
             <option value="<?php echo $team->id; ?>" <?php if($team->id == $team_id): ?> selected <?php endif ?>><?php echo $team->name; ?></option>
             <?php endforeach ?>
@@ -39,9 +39,9 @@
             <th>Admin</th>
             <th>Klasse</th>
             <th>1. semester</th>
-            <th>Feedback (vinter)</th>
+            <th>Feedback (1. semester)</th>
             <th>2. semester</th>
-            <th>Feedback (sommer)</th>
+            <th>Feedback (2. semester)</th>
             <th>Handlinger</th>
 		</tr>	
 	</thead>
@@ -82,7 +82,7 @@
 </table>
 </div>
 <?php if($user_count == 1):?>
-<p style="color: #015ab3; font-size: 20px; font-weight: 600;">Nyt KARAKTERBLAD:</p>
+<p style="color: #015ab3; font-size: 20px; font-weight: 600;">Ny Meddelse:</p>
 <form action="<?php echo current_url(); ?>" method="POST">
     <div class="form-group">
     <label>Fag: 

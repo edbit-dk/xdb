@@ -5,7 +5,7 @@
 <div style="color: #015ab3; font-size: 30px; font-weight: 600;" align="left">
     <form action="<?php echo current_url() ?>" method="GET">    
         <select name="team_id" id="teams" required>
-            <option value="" selected hidden>KLASSE</option>
+            <option value="" selected hidden>HOLD</option>
             <?php foreach($teams as $team): ?>
             <option value="<?php echo $team->id; ?>" <?php if($team->id == $team_id): ?> selected <?php endif ?>><?php echo $team->name; ?></option>
             <?php endforeach ?>
