@@ -7,7 +7,7 @@
        <!-- Bootstrap css -->
     <link href="<?php echo url('/assets/theme/css/bootstrap.min.css') ?>" rel="stylesheet">
     <link href="<?php echo url('/assets/theme/css/style.css') ?>" rel="stylesheet">
-    <title>XDB - Eksamensdatabasen</title>
+    <title>SkoleData - Meddelsesbog</title>
 </head>
 <body class="text-center">
 <?php require_once $content;?>

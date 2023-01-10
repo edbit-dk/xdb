@@ -1,5 +1,6 @@
 <div class="container" style="margin-top: 50px">
-<h5>BRUGER: <span style="color: #015ab3; font-weight: 600;"><?php echo session('user')->fullname; ?> (<?php echo session('user')->username; ?>) - <?php 
+<h3 style="color: #015ab3; font-size: 30px; font-weight: 600;">Meddelsesbog</h3>
+<h5>Elev: <span style="color: #015ab3; font-weight: 600;"><?php echo session('user')->fullname; ?> (<?php echo session('user')->username; ?>) - <?php 
 foreach($teams as $team) {
     if($team->id == session('user')->team_id) {
         echo $team->name;
@@ -14,7 +15,7 @@ foreach($teams as $team) {
 </form>
 <br>
 <?php if(!empty(session('user')->profile)): ?>
-    <h3>ELEVPLAN:</h3>
+    <h3>Plan:</h3>
     <div class="table-responsive">
     <textarea style="color: #015ab3;" disabled rows="5" cols="100"><?php echo session('user')->profile ?></textarea> 
     </div>

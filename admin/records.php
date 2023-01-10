@@ -1,7 +1,7 @@
 <?php require 'header.php'; ?>
 <div class="container" style="margin-top: 90px"> 
 <?php check_messages(); ?>
-<caption><h3 align="left">KARAKTERBLADE (<?php echo $record_count; ?>)
+<caption><h3 align="left">FEEDBACK (<?php echo $record_count; ?>)
 <?php if($user_count == 1):?>
 : "<?php echo $user->first()->fullname; ?> (<?php echo $user->first()->username; ?>)"
 <?php endif ?>
@@ -38,9 +38,9 @@
             <th>Bruger</th>
             <th>Admin</th>
             <th>Klasse</th>
-            <th>1. standpunkt</th>
+            <th>1. mål</th>
             <th>Feedback (vinter)</th>
-            <th>2. standpunkt</th>
+            <th>2. mål</th>
             <th>Feedback (sommer)</th>
             <th>Handlinger</th>
 		</tr>	
@@ -65,9 +65,9 @@
                 <option value="<?php echo $team->id; ?>" <?php if($team->id == $record->team_id): ?> selected <?php endif ?>><?php echo $team->name; ?></option>
                 <?php endforeach ?>
             </select> </td>
-            <td><input type="number" min="-3" max="12" name="winter_grade" value="<?php echo $record->winter_grade; ?>"></td>
+            <td><input type="number" min="0" max="100" name="winter_grade" value="<?php echo $record->winter_grade; ?>">%</td>
             <td><textarea name="winter_feedback"><?php echo $record->winter_feedback; ?></textarea></td>
-            <td><input type="number" min="-3" max="12" name="summer_grade" value="<?php echo $record->summer_grade; ?>"></td>
+            <td><input type="number" min="0" max="100" name="summer_grade" value="<?php echo $record->summer_grade; ?>">%</td>
             <td><textarea name="summer_feedback"><?php echo $record->summer_feedback; ?></textarea></td>
             <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
             <td>
@@ -124,12 +124,12 @@
     </div>
     <br>
     <div class="form-group">
-    <label>1. standpunkt: <input min="-3" max="12" name="winter_grade" type="number" value="0"></label>
+    <label>1. mål: <input min="0" max="100" name="winter_grade" type="number" value="0">%</label>
     <label>Feedback (vinter): <textarea name="winter_feedback"></textarea></label>
     </div>
     <br>
     <div class="form-group">
-    <label>2. standpunkt: <input min="-3" max="12" name="summer_grade" type="number" value="0"></label>
+    <label>2. mål: <input min="0" max="100" name="summer_grade" type="number" value="0">%</label>
     <label>Feedback (sommer): <textarea name="summer_feedback"></textarea></label>    
     </div>
     <br>
