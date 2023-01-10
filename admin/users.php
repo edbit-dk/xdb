@@ -27,14 +27,14 @@
 <table class="table table-hover table-striped">
 	<thead>
 		<tr>
-            <th>Klasse</th>
+            <th>Hold</th>
             <th>Admin?</th>
             <th>Navn</th>
             <th>Profil</th>
             <th>Brugernavn</th>
             <th>Adgangskode</th>
             <th>Handlinger</th>
-            <th>Karakterblade</th>
+            <th>Meddelser</th>
 		</tr>	
 	</thead>
 	<tbody>

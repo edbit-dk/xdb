@@ -101,9 +101,9 @@
     </div>
     <br>
     <div class="form-group">
-    <label>Team: 
+    <label>Hold: 
     <select name="team_id" >
-        <option>Vælg Team</option>
+        <option>Vælg Hold</option>
         <?php foreach($teams as $team): ?>
         <option value="<?php echo $team->id; ?>" <?php if($team->id == $user->first()->team_id): ?> selected <?php endif ?>><?php echo $team->name; ?></option>
         <?php endforeach ?>
@@ -125,12 +125,12 @@
     <br>
     <div class="form-group">
     <label>1. semester: <input min="0" max="100" name="winter_grade" type="number" value="0">%</label>
-    <label>Feedback (vinter): <textarea name="winter_feedback"></textarea></label>
+    <label>Feedback (1. semester): <textarea name="winter_feedback"></textarea></label>
     </div>
     <br>
     <div class="form-group">
     <label>2. semester: <input min="0" max="100" name="summer_grade" type="number" value="0">%</label>
-    <label>Feedback (sommer): <textarea name="summer_feedback"></textarea></label>    
+    <label>Feedback (2. semester): <textarea name="summer_feedback"></textarea></label>    
     </div>
     <br>
     <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
