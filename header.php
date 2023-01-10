@@ -17,7 +17,7 @@ foreach($teams as $team) {
 <?php if(!empty(session('user')->profile)): ?>
     <h3>Plan:</h3>
     <div class="table-responsive">
-    <textarea style="color: #015ab3;" disabled rows="5" cols="100"><?php echo session('user')->profile ?></textarea> 
+    <textarea style="color: #015ab3; font-weight: 600;" disabled rows="5" cols="100"><?php echo session('user')->profile ?></textarea> 
     </div>
 <?php endif ?>
 <br><br>
