@@ -1,2 +1,2 @@
-# php-xdb
-Exam-system suited for the Danish Education System
+# xDB
+Exam-database suited for the Danish Education System
