@@ -49,7 +49,7 @@
 		return strftime("%B %d, %Y at %I:%M %p", $nicetime);	
 					
 	}
-	function __autoload($class_name) {
+	function load_class($class_name) {
 		$class_name = strtolower($class_name);
 		$path = APP_PATH.DS."classes/{$class_name}.class.php";
 		if(file_exists($path)){
@@ -59,6 +59,7 @@
 		}
 					
 	}
+	spl_autoload_register('load_class');
 
 	function currentpage_public(){
 		$this_page = $_SERVER['SCRIPT_NAME']; // will return /path/to/file.php
