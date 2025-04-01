@@ -34,7 +34,7 @@ CREATE TABLE `xdb_records` (
   `subject_id` int NOT NULL,
   `team_id` int NOT NULL,
   `winter_grade` tinyint DEFAULT '0',
-  `winter_feedback` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+  `winter_feedback` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `summer_grade` tinyint DEFAULT '0',
   `summer_feedback` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
