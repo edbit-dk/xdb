@@ -8,7 +8,7 @@ $teams = Team::list();
 
 <main class="form-signin w-100 m-auto" style="background-color: white; box-shadow: 11px 30px 154px 2px rgb(0 0 0 / 34%); padding: 50px;">
 <?php require 'header.php'; ?>    
-<h1 class="h3 mb-3 fw-normal"><span style="color: #015ab3; font-size: 30px; font-weight: 600;">Skole</span>Data</h1>
+<h1 class="h3 mb-3 fw-normal"><span style="color: #015ab3; font-size: 30px; font-weight: 600;">x</span>DB</h1>
 <h5>Meddelsesbog - Medarbejder</h5>
 <?php check_messages(); ?>
 <br>
